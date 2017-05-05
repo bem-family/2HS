@@ -8,8 +8,8 @@ public class Task {
 	@Id
 	private String id;
 	private String title;//标题
-	private String content;//简介
-	private String money;//金钱
+	private String content;//描述
+	private String money;//价格
 	private String address;//地址
 	private String user_id;//用户id
 	private String authenticate;//认证状态
@@ -19,6 +19,12 @@ public class Task {
 	private String list_img;//图片集
 	private String scope;//所属范围
 	
+	public Task(){
+	}
+	
+	public Task(String userid){
+		this.user_id = userid;
+	}
 	
 	public String getId() {
 		return id;
