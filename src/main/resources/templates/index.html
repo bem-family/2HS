@@ -9,8 +9,30 @@
 
 </head>
 <body>
-
-eee
-
+	<div>
+		<form th:action="@{/info}" method="post">
+        <div>
+        	供需：
+        	<p>
+        	  <label>
+        	    <input type="radio" name="RadioGroup1" value="转让" id="RadioGroup1_0">转让</label>
+        	  <label>
+        	    <input type="radio" name="RadioGroup1" value="免费赠送" id="RadioGroup1_1">免费赠送</label>
+        	  <label>
+        	    <input type="radio" name="RadioGroup1" value="物品交换" id="RadioGroup1_2">物品交换</label>
+      	  </p>
+			标题：<input name="title" type="text"><br /> 
+			描述：<input name="content" type="text"><br /> 
+			价格：<input name="money" type="text"><br />
+			地点：<input name="address" type="text"><br /> 
+			联系电话：<input name="phone" type="text"><br /> 
+            QQ号：<input name="qq" type="text">
+        </div>
+        <div>
+        	<input name="" type="submit" value="提交">
+        	<input name="" type="reset" value="取消">
+        </div>
+        </form>
+	</div>
 </body>
 </html>
