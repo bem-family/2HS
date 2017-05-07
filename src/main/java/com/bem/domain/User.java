@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -27,6 +30,14 @@ public class User {
 	private int stu_depart;	//系部
 	private Date reg_time;	//注册时间
 	private Date log_time;	//登陆时间
+	
+    public enum ROLE{
+        ADMIN, USER;
+    }
+    
+    @Enumerated(EnumType.STRING)
+    private ROLE role;
+
 	
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
@@ -118,6 +129,14 @@ public class User {
 
 	public void setList(List<OAuth> list) {
 		this.list = list;
+	}
+
+	public ROLE getRole() {
+		return role;
+	}
+
+	public void setRole(ROLE role) {
+		this.role = role;
 	}
 	
 	
