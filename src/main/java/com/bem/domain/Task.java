@@ -1,6 +1,9 @@
 package com.bem.domain;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
@@ -20,6 +23,7 @@ public class Task {
 	private String scope;//所属范围
 	
 	public Task(){
+		this.id = UUID.randomUUID().toString();
 	}
 	
 	public Task(String userid){
