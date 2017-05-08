@@ -1,24 +1,34 @@
 package com.bem.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bem.domain.TaskCreateForm;
+import com.bem.domain.TaskRepository;
 import com.bem.service.TaskService;
 
 
 @Controller
 public class IndexController {
 
-	@Autowired
+	@Resource
 	private TaskService taskService;
 	
 	protected String sessuserid = "";
 	
+	
+	@RequestMapping("/")
+	public String index(){
+		return "index";
+	}
+	
+	
+	
 	@PostMapping("/task")
-	@ResponseBody
 	public String index(TaskCreateForm taskCreateForm) {
 		taskService.save(sessuserid,taskCreateForm);
 		return "index";
