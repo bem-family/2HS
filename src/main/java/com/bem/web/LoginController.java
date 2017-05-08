@@ -46,10 +46,11 @@ public class LoginController {
 	public @ResponseBody Map<String, Object> createNewUser(@Valid UserRegCreateForm user) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		LocalAuth localAuth = userService.findUserByAccount(user.getUsername());
+		boolean pwdVerify = user.getPassword().equals(user.getConfirm_password());
 		if (localAuth != null) {
 			map.put("data", "userExists");
 		}
-		else if (!user.getPassword().equals(user.getConfirm_password())) {
+		else if (!pwdVerify) {
 			map.put("data", "error");
 		} else {
 			userService.saveUser(user);
