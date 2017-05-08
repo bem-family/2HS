@@ -1,19 +1,24 @@
 package com.bem.service;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.stereotype.Component;
 
 import com.bem.domain.Task;
 import com.bem.domain.TaskCreateForm;
 import com.bem.domain.TaskRepository;
 
+
+@Component
 public class TaskService {
-	@Autowired
+	@Resource
 	private TaskRepository taskRepository;
 
 	public void save(String sessuserid, TaskCreateForm taskCreateForm){
-		Task task = new Task(sessuserid);
+		Task task = new Task();
 		BeanUtils.copyProperties(taskCreateForm, task, Task.class);
-		taskRepository.save();
+		taskRepository.save(task);
 	}
 }

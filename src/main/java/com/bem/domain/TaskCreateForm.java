@@ -3,15 +3,10 @@ package com.bem.domain;
 public class TaskCreateForm {
 	
 	private String title;	// 标题
-	
 	private String content;	// 描述
-	
 	private String money;	// 价格
-	
 	private String address;	// 地址
-	
 	private String qq;	// 企鹅号
-	
 	private String phone;	// 联系电话
 
 	public String getTitle() {
