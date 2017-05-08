@@ -2,6 +2,8 @@ package com.bem.service;
 
 import java.util.UUID;
 
+import javax.annotation.Resource;
+
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +18,9 @@ import com.bem.domain.UserRepository;
 
 @Service("userService")
 public class UserService {
-	@Autowired
+	@Resource
 	private UserRepository userRepository;
-	@Autowired
+	@Resource
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 

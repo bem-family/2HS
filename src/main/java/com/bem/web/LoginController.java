@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -31,10 +32,10 @@ import com.bem.service.UserService;
 
 
 @Controller
-public class LoginController {
-	@Autowired
+public class LoginController{
+	@Resource
 	private UserService userService;
-	@Autowired
+	@Resource
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@GetMapping("/login")
