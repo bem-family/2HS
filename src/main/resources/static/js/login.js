@@ -14,6 +14,5 @@ $(".register_btn").click(function register(event){
 			}else{
 				console.log("error");
 			}
-			
 		});
 });
