@@ -33,13 +33,17 @@ public class UserRepository {
 		getSession().save(localAuth);
 	}
 	
-	public LocalAuth findUserByUsername(String username){
+	public LocalAuth findUserByAccount(String account){
 		LocalAuth localAuth = new LocalAuth();
 		try {
 			CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 			CriteriaQuery<LocalAuth> query  = builder.createQuery(LocalAuth.class);
 			Root<LocalAuth> root =query.from(LocalAuth.class);
-			query.where(builder.equal(root.get("username"), username));
+			Predicate conditionForName = builder.equal(root.get("username"), account);
+		    Predicate conditionForEmail = builder.equal(root.get("email"), account);
+		    Predicate conditionForPhone = builder.equal(root.get("phone"), account);
+		    Predicate condition3 = builder.or(conditionForName,conditionForEmail,conditionForPhone);
+			query.where(condition3);
 			localAuth = entityManager.createQuery(query).getSingleResult();
 		}catch(Exception e){
 			return null;

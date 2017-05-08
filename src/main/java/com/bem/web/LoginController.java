@@ -45,7 +45,7 @@ public class LoginController {
 	@PostMapping("/registration")
 	public @ResponseBody Map<String, Object> createNewUser(@Valid UserRegCreateForm user) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		LocalAuth localAuth = userService.findUserByUsername(user.getUsername());
+		LocalAuth localAuth = userService.findUserByAccount(user.getUsername());
 		if (localAuth != null) {
 			map.put("data", "userExists");
 		}
