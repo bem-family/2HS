@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
@@ -36,7 +37,11 @@ public class UserRepository {
 			CriteriaBuilder builder = entityManager.getCriteriaBuilder();
 			CriteriaQuery<LocalAuth> query  = builder.createQuery(LocalAuth.class);
 			Root<LocalAuth> root =query.from(LocalAuth.class);
-			query.where(builder.equal(root.get("username"), username));
+			Predicate conditionForName = builder.equal(root.get("username"), username);
+		    Predicate conditionForEmail = builder.equal(root.get("email"), username);
+		    Predicate conditionForPhone = builder.equal(root.get("phone"), username);
+		    Predicate condition3 = builder.or(conditionForName,conditionForEmail,conditionForPhone);
+			query.where(condition3);
 			localAuth = entityManager.createQuery(query).getSingleResult();
 		}catch(Exception e){
 			return null;
