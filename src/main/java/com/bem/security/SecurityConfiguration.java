@@ -52,7 +52,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		RememberMeServices rememberMeServices;
 		http.
 			authorizeRequests()
-				.antMatchers("/","/home").permitAll()
+				.antMatchers("/","/home","/registration").permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()

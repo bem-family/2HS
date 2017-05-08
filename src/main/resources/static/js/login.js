@@ -12,7 +12,7 @@ $(".register_btn").click(function register(event){
 			}else if(data.data == "userExists"){
 				console.log("userExists");
 			}else{
-				console.log("error");
+				console.log(data);
 			}
 		});
 });
