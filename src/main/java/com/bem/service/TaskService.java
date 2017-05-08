@@ -5,11 +5,9 @@ import javax.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 
 import org.springframework.stereotype.Component;
-
 import com.bem.domain.Task;
 import com.bem.domain.TaskCreateForm;
 import com.bem.domain.TaskRepository;
-
 
 @Component
 public class TaskService {
