@@ -2,11 +2,13 @@ package com.bem.domain;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
-
 
 @Component
 @Transactional
@@ -28,4 +30,17 @@ public class UserRepository {
 		getSession().save(localAuth);
 	}
 	
+	public LocalAuth findUserByUsername(String username){
+		LocalAuth localAuth = new LocalAuth();
+		try {
+			CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<LocalAuth> query  = builder.createQuery(LocalAuth.class);
+			Root<LocalAuth> root =query.from(LocalAuth.class);
+			query.where(builder.equal(root.get("username"), username));
+			localAuth = entityManager.createQuery(query).getSingleResult();
+		}catch(Exception e){
+			return null;
+		}
+		return localAuth;
+	}	
 }

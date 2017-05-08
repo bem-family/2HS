@@ -27,45 +27,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
-    @Override
-    @Bean
-    public UserDetailsService userDetailsService() {
-        return new CustomUserDetailsService();
-    }
 
     @Override  
     protected void configure(AuthenticationManagerBuilder auth)  
             throws Exception {  
         auth.userDetailsService(userDetailsService())
         .passwordEncoder(bCryptPasswordEncoder);
-    } 
+    }
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		ResttfulAuth auth = new ResttfulAuth();
 		RememberMeServices rememberMeServices;
 		http.
 			authorizeRequests()
 				.antMatchers("/**").permitAll()
 				.anyRequest()
-				.authenticated()
-				.and().csrf().disable().formLogin()
-				.loginPage("/login")
-				.failureHandler(auth)
-				.and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/")
-				.deleteCookies("remember-me")
-				.and().exceptionHandling()
-				.accessDeniedPage("/403")
-				.and()
-                //开启cookie保存用户数据
-                .rememberMe()
-                //设置cookie有效期
-                .tokenValiditySeconds(60 * 60 * 24 * 7)
-                .rememberMeCookieName("ttttt");
-                //设置cookie的私钥
-                //.key("111");
+				.authenticated();
 	}
 	
 	@Override

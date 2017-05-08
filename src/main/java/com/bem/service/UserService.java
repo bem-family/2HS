@@ -12,13 +12,10 @@ import com.bem.domain.LocalAuth;
 import com.bem.domain.User;
 import com.bem.domain.UserRegCreateForm;
 import com.bem.domain.UserRepository;
-import com.bem.security.UserJpaRepository;
 
 
 @Service("userService")
 public class UserService {
-	@Autowired
-	private UserJpaRepository userJpaRepository;
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -26,7 +23,7 @@ public class UserService {
 
 
 	public LocalAuth findUserByUsername(String username) {
-		return userJpaRepository.findByUsername(username);
+		return userRepository.findUserByUsername(username);
 	}
 	
 	public void saveUser(UserRegCreateForm Ruser) {
@@ -41,6 +38,7 @@ public class UserService {
 		localAuth.setPhone(Ruser.getPhone());
 		localAuth.setPassword(bCryptPasswordEncoder.encode(Ruser.getPassword()));
 		localAuth.setUsername(Ruser.getUsername());
+		localAuth.setUser(user);
 		//user.setReg_time(reg_time);
 		userRepository.SaveLocalAuth(localAuth);
 	}
