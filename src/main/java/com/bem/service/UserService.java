@@ -22,8 +22,8 @@ public class UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-	public LocalAuth findUserByUsername(String username) {
-		return userRepository.findUserByUsername(username);
+	public LocalAuth findUserByAccount(String account) {
+		return userRepository.findUserByAccount(account);
 	}
 	
 	public void saveUser(UserRegCreateForm Ruser) {
