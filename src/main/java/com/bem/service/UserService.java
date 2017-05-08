@@ -27,19 +27,9 @@ public class UserService {
 	}
 	
 	public void saveUser(UserRegCreateForm Ruser) {
-		User user = new User();
-		user.setId(UUID.randomUUID().toString().replace("-", ""));
-		user.setEmail(Ruser.getEmail());
-		user.setPhone(Ruser.getPhone());
+		User user = new User(Ruser.getEmail(), Ruser.getPhone());
 		userRepository.SaveUser(user);
-		LocalAuth localAuth = new LocalAuth();
-		localAuth.setId(UUID.randomUUID().toString().replace("-", ""));
-		localAuth.setEmail(Ruser.getEmail());
-		localAuth.setPhone(Ruser.getPhone());
-		localAuth.setPassword(bCryptPasswordEncoder.encode(Ruser.getPassword()));
-		localAuth.setUsername(Ruser.getUsername());
-		localAuth.setUser(user);
-		//user.setReg_time(reg_time);
+		LocalAuth localAuth = new LocalAuth(Ruser.getUsername(), Ruser.getEmail(), Ruser.getPhone(), bCryptPasswordEncoder.encode(Ruser.getPassword()), user);
 		userRepository.SaveLocalAuth(localAuth);
 	}
 }

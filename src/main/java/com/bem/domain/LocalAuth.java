@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.bem.utils.ID;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -26,6 +27,19 @@ public class LocalAuth {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name ="user_id")
 	private User user;
+	
+	public LocalAuth(){
+		
+	}
+	
+	public LocalAuth(String username, String email, String phone, String password, User user){
+		this.id = ID.uuid();
+		this.username = username;
+		this.email = email;
+		this.phone = phone;
+		this.password = password;
+		this.user = user;
+	}
 
 	public String getId() {
 		return id;
