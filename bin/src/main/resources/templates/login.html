@@ -22,18 +22,10 @@
       <button class="register_btn">create</button>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
-    <form class="login-form" th:action="@{/login}" method="POST">
-     <div th:if="${param.error}">
-            Invalid username and password.
-        </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
-        <label for="remember-me">Remember me</label>
-        <input type="checkbox" name="remember-me" id="remember-me">
-      <input type="text" placeholder="username" name="username"/>
-      <input type="password" placeholder="password" name="password"/>
-      <button type="submit">login</button>
+    <form class="login-form">
+      <input type="text" placeholder="username"/>
+      <input type="password" placeholder="password"/>
+      <button>login</button>
       <p class="message">Not registered? <a href="#">Create an account</a></p>
     </form>
   </div>
@@ -41,7 +33,6 @@
  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     <script src="js/index.js" th:src="@{/js/index.js}"></script>
-    <script src="js/index.js" th:src="@{/js/login.js}"></script>
 
 </body>
 </html>

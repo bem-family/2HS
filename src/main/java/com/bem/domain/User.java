@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.bem.utils.ID;
+import com.bem.utils.Time;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -42,6 +44,17 @@ public class User {
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
 	private List<OAuth> list;
+	
+	public User(String email, String phone){
+		this.id = ID.uuid();
+		this.email = email;
+		this.phone = phone;
+		this.reg_time = Time.timestamp();
+	}
+	
+	public User(){
+		
+	}
 
 	public String getId() {
 		return id;

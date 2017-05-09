@@ -29,7 +29,15 @@ public class TaskRepository {
 	public Session getSession() {
 		return entityManager.unwrap(Session.class);
 	}
-	
+	public Task findId(String id){
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<Task> query = builder.createQuery(Task.class);
+		Root<Task> root  = query.from(Task.class);
+		query.select(root);
+		query.where(builder.equal(root.get("id"), id));
+		Task task = entityManager.createQuery(query).getSingleResult();
+		return task;
+	}
 	public void save(Task task) {
 		getSession().save(task);
 	}
@@ -40,5 +48,16 @@ public class TaskRepository {
 		query.select(root);
 		List<Task> mlist = entityManager.createQuery(query).getResultList();
 		return mlist;
+	}
+	public boolean delete(String id){
+		Task task = findId(id);
+		if(task.getId()!=null){
+			getSession().delete(task);
+			return true;
+		}
+		return false;
+	}
+	public void update(Task task){
+		getSession().update(task);
 	}
 }

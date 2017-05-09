@@ -2,6 +2,8 @@ package com.bem.service;
 
 import java.util.UUID;
 
+import javax.annotation.Resource;
+
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,30 +18,20 @@ import com.bem.domain.UserRepository;
 
 @Service("userService")
 public class UserService {
-	@Autowired
+	@Resource
 	private UserRepository userRepository;
-	@Autowired
+	@Resource
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-	public LocalAuth findUserByUsername(String username) {
-		return userRepository.findUserByUsername(username);
+	public LocalAuth findUserByAccount(String account) {
+		return userRepository.findUserByAccount(account);
 	}
 	
 	public void saveUser(UserRegCreateForm Ruser) {
-		User user = new User();
-		user.setId(UUID.randomUUID().toString().replace("-", ""));
-		user.setEmail(Ruser.getEmail());
-		user.setPhone(Ruser.getPhone());
+		User user = new User(Ruser.getEmail(), Ruser.getPhone());
 		userRepository.SaveUser(user);
-		LocalAuth localAuth = new LocalAuth();
-		localAuth.setId(UUID.randomUUID().toString().replace("-", ""));
-		localAuth.setEmail(Ruser.getEmail());
-		localAuth.setPhone(Ruser.getPhone());
-		localAuth.setPassword(bCryptPasswordEncoder.encode(Ruser.getPassword()));
-		localAuth.setUsername(Ruser.getUsername());
-		localAuth.setUser(user);
-		//user.setReg_time(reg_time);
+		LocalAuth localAuth = new LocalAuth(Ruser.getUsername(), Ruser.getEmail(), Ruser.getPhone(), bCryptPasswordEncoder.encode(Ruser.getPassword()), user);
 		userRepository.SaveLocalAuth(localAuth);
 	}
 }
