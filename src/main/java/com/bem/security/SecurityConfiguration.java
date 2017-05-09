@@ -63,12 +63,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.logout()
 				.permitAll()
 				.deleteCookies("remember-me")
+			.and().exceptionHandling()
+				.accessDeniedPage("/403")
 			.and()
-	        //开启cookie保存用户数据
-	        .rememberMe()
-	        //设置cookie有效期
-	        .tokenValiditySeconds(60 * 60 * 24 * 7)
-	        .rememberMeCookieName("ttttt");
+	        	//开启cookie保存用户数据
+	        	.rememberMe()
+	        	//设置cookie有效期
+	        	.tokenValiditySeconds(60 * 60 * 24 * 7)
+	        	.rememberMeCookieName("ttttt");
 	}
 	
 	@Override

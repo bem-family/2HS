@@ -24,7 +24,7 @@ public class LocalAuth {
 	private String phone;	//?
 	private String password;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne()
 	@JoinColumn(name ="user_id")
 	private User user;
 	
