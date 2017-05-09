@@ -26,7 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.bem.domain.LocalAuth;
-import com.bem.domain.UserRegCreateForm;
+import com.bem.domain.UserRegDto;
 import com.bem.service.UserService;
 
 
@@ -44,19 +44,15 @@ public class LoginController{
 	}
 	
 	@PostMapping("/registration")
-	public @ResponseBody Map<String, Object> createNewUser(@Valid UserRegCreateForm user) {
+	public @ResponseBody Map<String, Object> createNewUser(@Valid UserRegDto user) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		LocalAuth localAuth = userService.findUserByAccount(user.getUsername());
-		boolean pwdVerify = user.getPassword().equals(user.getConfirm_password());
 		if (localAuth != null) {
 			map.put("data", "userExists");
+			return map;
 		}
-		else if (!pwdVerify) {
-			map.put("data", "error");
-		} else {
-			userService.saveUser(user);
-			map.put("data", "success");
-		}
+		userService.saveUser(user);
+		map.put("data", "success");
 		return map;
 	}
 }

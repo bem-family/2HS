@@ -6,7 +6,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
-public class TaskCreateForm {
+public class TaskDto {
 	
 	@NotEmpty
 	private String title;	// 标题

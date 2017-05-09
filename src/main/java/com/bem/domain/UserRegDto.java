@@ -1,12 +1,24 @@
 package com.bem.domain;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import javax.validation.Constraint;
+import javax.validation.Payload;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class UserRegCreateForm {
+import com.bem.utils.PasswordMatches;
+import com.bem.utils.PasswordMatchesValidator;
+
+
+@PasswordMatches
+public class UserRegDto {
 	@NotEmpty(message = "*Please provide your username")
 	@Length(min = 6, message = "too_little")
 	private String username;
@@ -66,6 +78,5 @@ public class UserRegCreateForm {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
 	
 }

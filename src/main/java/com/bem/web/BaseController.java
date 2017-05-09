@@ -17,12 +17,13 @@ public abstract class BaseController {
 	      return SecurityContextHolder.getContext().getAuthentication().getName();
 	   }
 	
+	//当前的user
 	public User getCurrentUser(){
-		boolean userExists = (userService.findUserByAccount(getCurrentUsername()) == null);
-		if(userExists){
+		boolean userNotExists = (userService.findUserByAccount(getCurrentUsername()) == null);
+		if(userNotExists){
 			return null;
 		}
 		return userService.findUserByAccount(getCurrentUsername()).getUser();
 	}
-	
+
 }

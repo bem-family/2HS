@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.bem.domain.TaskCreateForm;
+import com.bem.domain.TaskDto;
 import com.bem.service.TaskService;
 
 
@@ -29,7 +29,7 @@ public class IndexController extends BaseController{
 	}
 	
 	@PostMapping("/taskCreate")
-	public String addTask(TaskCreateForm taskCreateForm) {
+	public String addTask(TaskDto taskCreateForm) {
 		taskService.save(getCurrentUser().getId(),taskCreateForm);
 		return "index";
 	}
@@ -40,8 +40,8 @@ public class IndexController extends BaseController{
 		return "index";
 	}
 	@PostMapping("/update/{id}")
-	public String updateTask(TaskCreateForm taskCreateForm,@PathVariable String id){
-		taskService.update(taskCreateForm,id);
+	public String create(TaskDto taskCreateForm) {
+		//taskService.save(sessuserid,taskCreateForm);
 		return "index";
 	}
 	
