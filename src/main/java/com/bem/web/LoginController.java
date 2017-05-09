@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -31,10 +32,10 @@ import com.bem.service.UserService;
 
 
 @Controller
-public class LoginController {
-	@Autowired
+public class LoginController{
+	@Resource
 	private UserService userService;
-	@Autowired
+	@Resource
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@GetMapping("/login")
@@ -46,10 +47,11 @@ public class LoginController {
 	public @ResponseBody Map<String, Object> createNewUser(@Valid UserRegCreateForm user) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		LocalAuth localAuth = userService.findUserByAccount(user.getUsername());
+		boolean pwdVerify = user.getPassword().equals(user.getConfirm_password());
 		if (localAuth != null) {
 			map.put("data", "userExists");
 		}
-		else if (!user.getPassword().equals(user.getConfirm_password())) {
+		else if (!pwdVerify) {
 			map.put("data", "error");
 		} else {
 			userService.saveUser(user);
