@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.bem.domain.TaskCreateForm;
 import com.bem.domain.TaskRepository;
@@ -27,9 +28,9 @@ public class IndexController {
 	}
 	
 	
-	
-	@PostMapping("/task")
-	public String index(TaskCreateForm taskCreateForm) {
+	//新增一条首页信息
+	@PostMapping("/taskCreate")
+	public String create(TaskCreateForm taskCreateForm) {
 		taskService.save(sessuserid,taskCreateForm);
 		return "index";
 	}
