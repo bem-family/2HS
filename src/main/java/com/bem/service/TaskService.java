@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bem.domain.Task;
-import com.bem.domain.TaskCreateForm;
+import com.bem.domain.TaskDto;
 import com.bem.domain.TaskRepository;
 
 @Component
@@ -19,7 +19,7 @@ public class TaskService {
 	@Resource
 	private TaskRepository taskRepository;
 
-	public void save(String sessuserid, TaskCreateForm taskCreateForm) {
+	public void save(String sessuserid, TaskDto taskCreateForm) {
 		
 		MultipartFile mfile = taskCreateForm.getImagefile();	//得到图片文件
 		String mFileName = new Date().getTime() + mfile.getOriginalFilename();	// 文件名

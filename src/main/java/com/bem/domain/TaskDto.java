@@ -2,7 +2,7 @@ package com.bem.domain;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class TaskCreateForm {
+public class TaskDto {
 	
 	private String title;	// 标题
 	private String content;	// 描述
