@@ -30,7 +30,6 @@ public class IndexController extends BaseController{
 	
 	@RequestMapping("/")
 	public String index(){
-		User user = getCurrentUser();
 		return "index";
 	}
 	

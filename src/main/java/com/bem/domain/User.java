@@ -28,13 +28,13 @@ public class User {
 	private String phone;
 	private String qq;
 	private int stu_number;	//学号
-	private int stu_major;	//专业
-	private int stu_depart;	//系部
+	private String stu_major;	//专业
+	private String stu_depart;	//系部
 	private Date reg_time;	//注册时间
 	private Date log_time;	//登陆时间
 	
     public enum ROLE{
-        ADMIN, USER;
+    	VISITOR, USER;
     }
     
     @Enumerated(EnumType.STRING)
@@ -45,10 +45,10 @@ public class User {
 	@JsonManagedReference
 	private List<OAuth> list;
 	
-	public User(String email, String phone){
+	public User(String email, ROLE role){
 		this.id = ID.uuid();
 		this.email = email;
-		this.phone = phone;
+		this.role = role;
 		this.reg_time = Time.timestamp();
 	}
 	
@@ -104,19 +104,19 @@ public class User {
 		this.stu_number = stu_number;
 	}
 
-	public int getStu_major() {
+	public String getStu_major() {
 		return stu_major;
 	}
 
-	public void setStu_major(int stu_major) {
+	public void setStu_major(String stu_major) {
 		this.stu_major = stu_major;
 	}
 
-	public int getStu_depart() {
+	public String getStu_depart() {
 		return stu_depart;
 	}
 
-	public void setStu_depart(int stu_depart) {
+	public void setStu_depart(String stu_depart) {
 		this.stu_depart = stu_depart;
 	}
 
