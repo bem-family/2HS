@@ -27,7 +27,7 @@ public class User {
 	private String email;
 	private String phone;
 	private String qq;
-	private int stu_number;	//学号
+	private Integer stu_number;	//学号
 	private String stu_major;	//专业
 	private String stu_depart;	//系部
 	private Date reg_time;	//注册时间
@@ -96,11 +96,11 @@ public class User {
 		this.qq = qq;
 	}
 
-	public int getStu_number() {
+	public Integer getStu_number() {
 		return stu_number;
 	}
 
-	public void setStu_number(int stu_number) {
+	public void setStu_number(Integer stu_number) {
 		this.stu_number = stu_number;
 	}
 
