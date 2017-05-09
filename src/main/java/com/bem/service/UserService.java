@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.bem.domain.LocalAuth;
 import com.bem.domain.User;
-import com.bem.domain.UserRegCreateForm;
+import com.bem.domain.UserRegDto;
 import com.bem.domain.UserRepository;
 import com.bem.utils.Constant;
 
@@ -28,7 +28,7 @@ public class UserService {
 		return userRepository.findUserByAccount(account);
 	}
 	
-	public void saveUser(UserRegCreateForm Ruser) {
+	public void saveUser(UserRegDto Ruser) {
 		User user = new User(Ruser.getEmail(), Constant.UN_AUTH_STATUS);
 		userRepository.SaveUser(user);
 		LocalAuth localAuth = new LocalAuth(Ruser.getUsername(), Ruser.getEmail(), Ruser.getPhone(), bCryptPasswordEncoder.encode(Ruser.getPassword()), user);
