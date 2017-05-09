@@ -1,12 +1,25 @@
 package com.bem.domain;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.jboss.logging.Message;
+
 public class TaskCreateForm {
 	
+	@NotEmpty
 	private String title;	// 标题
+	@NotEmpty
 	private String content;	// 描述
+	@NotEmpty
 	private String money;	// 价格
+	@NotEmpty
 	private String address;	// 地址
 	private String qq;	// 企鹅号
+	@Size(min = 13, max = 13)
+	@NotEmpty
 	private String phone;	// 联系电话
 
 	public String getTitle() {

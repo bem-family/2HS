@@ -1,8 +1,11 @@
 package com.bem.web;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,7 +25,9 @@ public class IndexController {
 	
 	
 	@RequestMapping("/")
-	public String index(){
+	public String index(Model model){
+		List mlist = taskService.findAll();
+		model.addAttribute("list", mlist);
 		return "index";
 	}
 	

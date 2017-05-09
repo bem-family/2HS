@@ -1,5 +1,7 @@
 package com.bem.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.BeanUtils;
@@ -18,5 +20,8 @@ public class TaskService {
 		Task task = new Task();
 		BeanUtils.copyProperties(taskCreateForm, task, Task.class);
 		taskRepository.save(task);
+	}
+	public List<Task> findAll(){
+		return taskRepository.findAll();
 	}
 }

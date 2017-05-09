@@ -13,6 +13,14 @@
 </head>
 
 <body>
+
+
+
+	<div th:each="mlist,row:${list}">
+		<img src="" alt=""/>
+		<p th:text="${mlist.title}"></p>
+		<p th:text="${mlist.content}"></p>
+	</div>
 	<div>
 		<form th:action="@{/task}" method="post">
         <div>
