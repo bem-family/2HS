@@ -14,7 +14,7 @@
 
 <body>
 	<div>
-		<form th:action="@{/taskCreate}" method="post" enctype="multipart/form-data">
+		<form th:action="@{/task}" method="post">
         <div>
         	供需：
         	<p>
@@ -25,19 +25,12 @@
         	  <label>
         	    <input type="radio" name="RadioGroup1" value="物品交换" id="RadioGroup1_2">物品交换</label>
       	  </p>
-			<p>标题：
-			<input name="title" type="text"><br /> 
+			标题：<input name="title" type="text"><br /> 
 			描述：<input name="content" type="text"><br /> 
 			价格：<input name="money" type="text"><br />
 			地点：<input name="address" type="text"><br /> 
 			联系电话：<input name="phone" type="text"><br /> 
             QQ号：<input name="qq" type="text">
-            
-            </p>
-			<div>
-			  <label for="fileField"></label>
-			  <input type="file" name="imagefile" id="fileField">
-			</div>
         </div>
         <div>
         	<input name="" type="submit" value="提交">
