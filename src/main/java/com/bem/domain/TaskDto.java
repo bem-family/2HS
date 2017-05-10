@@ -1,6 +1,5 @@
 package com.bem.domain;
 
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -8,17 +7,17 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class TaskDto {
 	
-	@NotEmpty
+	@NotEmpty(message = "The title must not be null")
 	private String title;	// 标题
-	@NotEmpty
+	@NotEmpty(message = "The content must not be null")
 	private String content;	// 描述
-	@NotEmpty
+	@NotEmpty(message = "The money must not be null")
 	private String money;	// 价格
-	@NotEmpty
+	@NotEmpty(message = "The address must not be null")
 	private String address;	// 地址
 	private String qq;	// 企鹅号
-	@Size(min = 13, max = 13)
-	@NotEmpty
+	@Size(min = 13, max = 13,message="input proper number")
+	@NotEmpty(message = "The phone must not be null")
 	private String phone;	// 联系电话
 	private MultipartFile imagefile;	// 图片
 	
