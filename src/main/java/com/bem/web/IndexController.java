@@ -1,6 +1,8 @@
 package com.bem.web;
 
+
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,13 +17,15 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.alibaba.fastjson.JSON;
 import com.bem.domain.QuizDto;
+import com.bem.domain.Task;
 import com.bem.domain.TaskDto;
 import com.bem.domain.User;
 import com.bem.domain.User.ROLE;
@@ -44,10 +48,12 @@ public class IndexController extends BaseController{
 	protected String sessuserid = "";
 	
 	@RequestMapping("/")
-	public String index(){
+	public String index(Model model){
+		List<Task> mlist = taskService.findAll();
+		model.addAttribute("list", mlist);
 		return "index";
 	}
-	
+
 	@GetMapping("/403")
     public String forbidden(){
         return "403";
@@ -60,9 +66,21 @@ public class IndexController extends BaseController{
 	}
 	
 	//新增一条首页信息
+
 	@PostMapping("/taskCreate")
-	public String create(TaskDto taskCreateForm) {
-		taskService.save(sessuserid,taskCreateForm);
+	public String addTask(TaskDto taskCreateForm) {
+		taskService.save(getCurrentUser().getId(),taskCreateForm);
+		return "index";
+	}
+	
+	@GetMapping("/deleteTask/{id}")
+	public String deleteTask(@PathVariable String id){
+		taskService.delete(id);
+		return "index";
+	}
+	@PostMapping("/update/{id}")
+	public String update(TaskDto taskCreateForm,@PathVariable String id) {
+		taskService.update(taskCreateForm, id);
 		return "index";
 	}
 	

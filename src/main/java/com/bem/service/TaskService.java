@@ -1,5 +1,6 @@
 package com.bem.service;
 
+import java.util.List;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -18,6 +19,7 @@ import com.bem.domain.TaskRepository;
 public class TaskService {
 	@Resource
 	private TaskRepository taskRepository;
+
 
 	public void save(String sessuserid, TaskDto taskCreateForm) {
 		
@@ -46,7 +48,20 @@ public class TaskService {
 
 			Task task = new Task();
 			BeanUtils.copyProperties(taskCreateForm, task, Task.class);
+			task.setList_img(mFileName);
 			taskRepository.save(task);
 		}
+	}
+	public List<Task> findAll(){
+		return taskRepository.findAll();
+	}
+	public boolean delete(String id){
+		return  taskRepository.delete(id);
+	}
+	public void update(TaskDto taskCreateForm,String id){
+		Task task = new Task();
+		BeanUtils.copyProperties(taskCreateForm, task, Task.class);
+		task.setId(id);
+		taskRepository.update(task);
 	}
 }
