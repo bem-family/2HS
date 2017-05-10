@@ -1,22 +1,45 @@
 package com.bem.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+import com.bem.domain.QuizDto;
 import com.bem.domain.TaskDto;
+import com.bem.domain.User;
+import com.bem.domain.User.ROLE;
+import com.bem.service.QuizService;
 import com.bem.service.TaskService;
-
+import com.bem.service.UserService;
 
 @Controller
-public class IndexController {
+public class IndexController extends BaseController{
 
 	@Resource
 	private TaskService taskService;
+	
+	@Resource
+	private QuizService quizService;
+	
+	@Resource
+	private UserService userService;
 	
 	protected String sessuserid = "";
 	
@@ -41,5 +64,35 @@ public class IndexController {
 	public String create(TaskDto taskCreateForm) {
 		taskService.save(sessuserid,taskCreateForm);
 		return "index";
+	}
+	
+	@GetMapping("/checkAnswer")
+	@ResponseBody
+	public String checkAnswer(@RequestParam("an") String answers){
+		String[] answer = answers.split("\\|");
+		if (quizService.checkAnswer(answer)){
+			User user = getCurrentUser();
+			user.setRole(ROLE.USER);
+			userService.updateUser(user);
+			List<SimpleGrantedAuthority> authList=new ArrayList<SimpleGrantedAuthority>();
+			authList.add(new SimpleGrantedAuthority("USER"));
+			SecurityContext context=SecurityContextHolder.getContext();
+			UserDetails userDetails=(UserDetails) context.getAuthentication().getPrincipal();
+			Authentication auth=new UsernamePasswordAuthenticationToken(userDetails,userDetails.getPassword(),authList);
+			context.setAuthentication(auth); 
+			return "success";
+		}else{
+			return "fail";
+		}
+		
+	}
+	
+	//认证问题
+	@PostMapping("/getQuizs")
+	@ResponseBody
+	public String getQuizs(){
+		List<QuizDto> quizs = quizService.getAll();
+		String jsonQuizs = JSON.toJSONString(quizs);
+		return jsonQuizs;
 	}
 }

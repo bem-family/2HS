@@ -50,9 +50,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		RememberMeServices rememberMeServices;
-		http.
-			authorizeRequests()
-				.antMatchers("/","/home","/registration").permitAll()
+		http.csrf()
+			.disable()
+			.authorizeRequests()
+				.antMatchers("/","/home","/registration","getQuizs").permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()

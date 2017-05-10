@@ -34,4 +34,8 @@ public class UserService {
 		LocalAuth localAuth = new LocalAuth(Ruser.getUsername(), Ruser.getEmail(), Ruser.getPhone(), bCryptPasswordEncoder.encode(Ruser.getPassword()), user);
 		userRepository.SaveLocalAuth(localAuth);
 	}
+	
+	public void updateUser(User user){
+		userRepository.UpdateUser(user);
+	}
 }

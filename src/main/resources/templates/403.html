@@ -2,10 +2,28 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
     <head>
-        <title>没有权限</title>
+        <title>未认证</title>
+        <link rel="stylesheet" href="./css/styles.css" /> 
+        <script src="https://cdn.bootcss.com/jquery/3.2.0/jquery.min.js"></script>
+    	<script src="./js/quizs.js" th:src="@{/js/quizs.js}"></script>
     </head>
     <body>
-        <p>您没有权限访问该页面</p>
+        <div id="quiz-container"></div> 
     </body>
-    <script th:src="@{/js/every/globalJs.js}"></script>
+    
+    
+    <script>
+    $(document).ready(function(){
+    	$.post("/getQuizs", function(data){
+            console.log(data);
+            var response = eval("("+data+")");
+            $('#quiz-container').jquizzy({ 
+            	questions: response, //试题信息 
+    	        sendResultsURL: '/checkAnswer' //结果处理地址 
+    	 	}); 
+        });
+    	
+    	 
+    });
+    </script>
 </html>

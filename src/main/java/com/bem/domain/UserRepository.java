@@ -31,6 +31,13 @@ public class UserRepository {
 	//保存账号信息
 	public void SaveLocalAuth(LocalAuth localAuth){
 		getSession().save(localAuth);
+		getSession().flush();
+		getSession().clear();
+	}
+	
+	//修改用户信息
+	public void UpdateUser(User user){
+		getSession().update(user);
 	}
 	
 	public LocalAuth findUserByAccount(String account){
