@@ -59,9 +59,8 @@ public class TaskService {
 		return  taskRepository.delete(id);
 	}
 	public void update(TaskDto taskCreateForm,String id){
-		Task task = new Task();
+		Task task  = taskRepository.findId(id);
 		BeanUtils.copyProperties(taskCreateForm, task, Task.class);
-		task.setId(id);
 		taskRepository.update(task);
 	}
 }
