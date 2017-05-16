@@ -6,8 +6,7 @@
   <title>Flat HTML5/CSS3 Login Form</title>
   
   
-  
-      <link rel="stylesheet" href="css/.css" th:href="@{/css/style.css}">
+     <link rel="stylesheet"  th:href="@{/css/style.css}">
 
   
 </head>
@@ -16,23 +15,16 @@
 
 
 
-	<div th:each="mlist,row:${list}">
-		<img src="" alt=""/>
-		<p th:text="${mlist.title}"></p>
-		<p th:text="${mlist.content}"></p>
+	<div  class="details" th:each="mlist,row:${list}" th:data-uid="${mlist.id}">
+		<a th:href="@{/task_detail/__${mlist.id}__}">
+			<img class="img" th:src="@{images/__${mlist.list_img}__}" alt=""/>
+			<p>标题：</p><span th:text="${mlist.title}"></span>
+			<p>内容：</p><span th:text="${mlist.content}"></span>
+		</a>
 	</div>
 	<div>
 		<form th:action="@{/taskCreate}" method="post" enctype="multipart/form-data">
         <div>
-        	供需：
-        	<p>
-        	  <label>
-        	    <input type="radio" name="RadioGroup1" value="转让" id="RadioGroup1_0">转让</label>
-        	  <label>
-        	    <input type="radio" name="RadioGroup1" value="免费赠送" id="RadioGroup1_1">免费赠送</label>
-        	  <label>
-        	    <input type="radio" name="RadioGroup1" value="物品交换" id="RadioGroup1_2">物品交换</label>
-      	  </p>
 			<p>标题：
 			<input name="title" type="text"><br /> 
 			描述：<input name="content" type="text"><br /> 
@@ -54,4 +46,6 @@
         </form>
 	</div>
 </body>
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/review.js}"></script>
 </html>

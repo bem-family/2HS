@@ -55,6 +55,9 @@ public class TaskService {
 	public List<Task> findAll(){
 		return taskRepository.findAll();
 	}
+	public Task findById(String id){
+		return taskRepository.findId(id);
+	}
 	public boolean delete(String id){
 		return  taskRepository.delete(id);
 	}

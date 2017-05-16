@@ -49,6 +49,8 @@ public class TaskRepository {
 		List<Task> mlist = entityManager.createQuery(query).getResultList();
 		return mlist;
 	}
+	
+	
 	public boolean delete(String id){
 		Task task = findId(id);
 		if(task.getId()!=null){
