@@ -15,8 +15,8 @@ public class Message {
 	private String id;
 	private String status;	//接收状态
 	private Date time;		//发送时间
-	private User formUserID;
-	private User toUserID;
+	private String formUserID;
+	private String toUserID;
 	private String message;
 	public String getId() {
 		return id;
@@ -36,16 +36,16 @@ public class Message {
 	public void setTime(Date time) {
 		this.time = time;
 	}
-	public User getFormUserID() {
+	public String getFormUserID() {
 		return formUserID;
 	}
-	public void setFormUserID(User formUserID) {
+	public void setFormUserID(String formUserID) {
 		this.formUserID = formUserID;
 	}
-	public User getToUserID() {
+	public String getToUserID() {
 		return toUserID;
 	}
-	public void setToUserID(User toUserID) {
+	public void setToUserID(String toUserID) {
 		this.toUserID = toUserID;
 	}
 	public String getMessage() {
