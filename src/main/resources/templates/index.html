@@ -14,7 +14,7 @@
 <body>
 
 
-
+<div name="user" hidden="hidden">[[${#httpServletRequest.remoteUser}]]</div>
 	<div  class="details" th:each="mlist,row:${list}" th:data-uid="${mlist.id}">
 		<a th:href="@{/task_detail/__${mlist.id}__}">
 			<img class="img" th:src="@{images/__${mlist.list_img}__}" alt=""/>
@@ -48,4 +48,7 @@
 </body>
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/review.js}"></script>
+<script th:src="@{/js/sockjs.min.js}"></script>
+<script th:src="@{/js/stomp.min.js}"></script>
+<script th:src="@{/js/socket.js}"></script>
 </html>
