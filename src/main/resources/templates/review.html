@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+     <link rel="stylesheet" href="" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="task" th:data-uid="${task.id}">
+	<img class="img" th:src="@{/images/__${task.list_img}__}" alt=""/>
+	<p><span>标题：</span><span th:text="${task.title}"></span></p>
+	<p><span>描述：</span><span th:text="${task.content}"></span></p>
+	<p><span>价格：</span><span th:text="${task.money}"></span></p>
+	<p><span>地址:</span><span th:text="${task.address}"></span></p>
+	<p><span>联系电话:</span><span th:text="${task.phone}"></span></p>
+	<p><span>发布时间：</span><span th:text="${task.release_time}"></span></p>
+</div>
+
+
+<div>
+	<input type="text" data-content="content"/><span class="submit">发表评论</span>
+</div>
+<div class="tab" th:each="mlist,row:${list}">
+	<img th:src="@{/images/__${mlist.user_head}__}" alt="img" >
+	<span th:text="${mlist.user_name}"></span>
+	<p th:text="${mlist.c_time}"></p><p th:text="${mlist.content}"></p>
+	<div class="delete_review" th:data-uid="${mlist.id}" th:if="${user.id} == ${mlist.comment_id}">删除评论</div>
+</div>
+</body>
+  	<script src="js/index.js" th:src="@{/js/jquery.min.js}"></script>
+    <script src="js/index.js" th:src="@{/js/review.js}"></script>
+</html>

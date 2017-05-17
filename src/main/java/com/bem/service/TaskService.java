@@ -55,13 +55,15 @@ public class TaskService {
 	public List<Task> findAll(){
 		return taskRepository.findAll();
 	}
+	public Task findById(String id){
+		return taskRepository.findId(id);
+	}
 	public boolean delete(String id){
 		return  taskRepository.delete(id);
 	}
 	public void update(TaskDto taskCreateForm,String id){
-		Task task = new Task();
+		Task task  = taskRepository.findId(id);
 		BeanUtils.copyProperties(taskCreateForm, task, Task.class);
-		task.setId(id);
 		taskRepository.update(task);
 	}
 }

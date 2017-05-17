@@ -1,10 +1,13 @@
 package com.bem.domain;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import com.bem.utils.Time;
 
 @Entity
 public class Task {
@@ -18,12 +21,13 @@ public class Task {
 	private String authenticate;//认证状态
 	private String qq;//企鹅号
 	private String phone;//联系电话
-	private String release_time;//发布时间
+	private Timestamp release_time;//发布时间
 	private String list_img;//图片集
 	private String scope;//所属范围
 	
 	public Task(){
 		this.id = UUID.randomUUID().toString();
+		this.release_time = (new Time()).timestamp();
 	}
 	
 	public Task(String userid){
@@ -84,12 +88,14 @@ public class Task {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getRelease_time() {
+	public Timestamp getRelease_time() {
 		return release_time;
 	}
-	public void setRelease_time(String release_time) {
+
+	public void setRelease_time(Timestamp release_time) {
 		this.release_time = release_time;
 	}
+
 	public String getList_img() {
 		return list_img;
 	}
