@@ -22,7 +22,7 @@ public class ReviewController extends BaseController{
 	@RequestMapping("/review/@{id}")
 	public String index(Model model,@PathVariable String id){
 		reviewService.findAll(id);
-		model.addAttribute(arg0)
+		//model.addAttribute(arg0)
 		return "review";
 	}
 	@ResponseBody

@@ -21,6 +21,26 @@ public class TaskDto {
 	private String phone;	// 联系电话
 	private MultipartFile imagefile;	// 图片
 	
+	
+	
+	public TaskDto() {
+		super();
+	}
+	
+	
+	public TaskDto(String title, String content, String money, String address, String qq, String phone,
+			MultipartFile imagefile) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.money = money;
+		this.address = address;
+		this.qq = qq;
+		this.phone = phone;
+		this.imagefile = imagefile;
+	}
+
+
 	public String getTitle() {
 		return title;
 	}
