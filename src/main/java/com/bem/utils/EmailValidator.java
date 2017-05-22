@@ -22,7 +22,7 @@ public class EmailValidator implements ConstraintValidator<EmailValid, String> {
                   + IP_DOMAIN
                   + ")$";
   @Override
-  public void initialize(EmailValid constraintAnnotation) {       
+  public void initialize(EmailValid constraintAnnotation) {
   }
   @Override
   public boolean isValid(String email, ConstraintValidatorContext context){   

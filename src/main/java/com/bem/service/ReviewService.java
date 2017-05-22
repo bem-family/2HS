@@ -1,6 +1,7 @@
 package com.bem.service;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -15,11 +16,14 @@ public class ReviewService {
 	@Resource
 	private ReviewRepository  reviewRepository;
 	
-	public void findAll(String id){
-		reviewRepository.findAll(id);
+	public List<Review> findAll(String id){
+		return reviewRepository.findAll(id);
 	}
 	public void add(Review review){
 		reviewRepository.addReview(review);
+	}
+	public void delete(String id){
+		reviewRepository.deleteReview(id);
 	}
 	
 }
