@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bem.domain.Review;
-import com.bem.domain.Task;
 import com.bem.domain.User;
 import com.bem.service.ReviewService;
 import com.bem.service.TaskService;
+import com.geek.controller.Task;
 
 @Controller
 public class ReviewController extends BaseController{

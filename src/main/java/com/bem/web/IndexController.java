@@ -25,13 +25,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 import com.bem.domain.QuizDto;
-import com.bem.domain.Task;
 import com.bem.domain.TaskDto;
 import com.bem.domain.User;
 import com.bem.domain.User.ROLE;
 import com.bem.service.QuizService;
 import com.bem.service.TaskService;
 import com.bem.service.UserService;
+import com.geek.controller.Task;
 
 @Controller
 public class IndexController extends BaseController{

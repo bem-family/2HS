@@ -11,9 +11,9 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.bem.domain.Task;
 import com.bem.domain.TaskDto;
 import com.bem.domain.TaskRepository;
+import com.geek.controller.Task;
 
 @Component
 public class TaskService {
