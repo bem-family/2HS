@@ -15,7 +15,6 @@
     <script>
     $(document).ready(function(){
     	$.post("/getQuizs", function(data){
-            console.log(data);
             var response = eval("("+data+")");
             $('#quiz-container').jquizzy({ 
             	questions: response, //试题信息 

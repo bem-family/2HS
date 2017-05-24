@@ -18,14 +18,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.bem.domain.Classify;
 import com.bem.domain.ClassifyDto;
 import com.bem.domain.QuizDto;
+import com.bem.domain.QuizDtoWrapper;
 import com.bem.domain.Task;
 import com.bem.domain.TaskDto;
 import com.bem.domain.User;
@@ -47,11 +48,11 @@ public class IndexController extends BaseController{
 	private UserService userService;
 	
 	@RequestMapping("/")
-	public String index(Model model ,Model m){
+	public String index(Model model){
 		List<Task> mlist = taskService.findAll();
 		List<Classify> clist = taskService.findAllClassify();
 		model.addAttribute("list", mlist);
-		m.addAttribute("clist", clist);
+		model.addAttribute("clist", clist);
 		return "index";
 	}
 	
@@ -98,11 +99,15 @@ public class IndexController extends BaseController{
 		return "index";
 	}
 	
-	@GetMapping("/checkAnswer")
+	@PostMapping("/checkAnswer")
 	@ResponseBody
-	public String checkAnswer(@RequestParam("an") String answers){
+	public String checkAnswer(@RequestBody QuizDtoWrapper quizDto){
+		String answers = quizDto.getan();
 		String[] answer = answers.split("\\|");
-		if (quizService.checkAnswer(answer)){
+		for(QuizDto attribute : quizDto.getQuizDto()) {
+			  System.out.println(attribute.getQuestion());
+		}
+		if (quizService.checkAnswers(answer,quizDto)){
 			User user = getCurrentUser();
 			user.setRole(ROLE.USER);
 			userService.updateUser(user);
@@ -123,7 +128,7 @@ public class IndexController extends BaseController{
 	@PostMapping("/getQuizs")
 	@ResponseBody
 	public String getQuizs(){
-		List<QuizDto> quizs = quizService.getAll();
+		List<QuizDto> quizs = quizService.getRandom();
 		String jsonQuizs = JSON.toJSONString(quizs);
 		return jsonQuizs;
 	}

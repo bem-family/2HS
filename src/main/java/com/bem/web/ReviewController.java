@@ -46,7 +46,7 @@ public class ReviewController extends BaseController{
 	public String delete(@PathVariable String id){
 		reviewService.delete(id);
 		return "true";
-	}
+}
 	
 	
 	@ResponseBody

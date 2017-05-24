@@ -1,5 +1,6 @@
 package com.bem.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -39,8 +42,7 @@ public class User {
     
     @Enumerated(EnumType.STRING)
     private ROLE role;
-
-	
+    
 	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
 	private List<OAuth> list;
@@ -151,6 +153,7 @@ public class User {
 	public void setRole(ROLE role) {
 		this.role = role;
 	}
+	
 	
 	
 }
