@@ -20,6 +20,7 @@ public class TaskDto {
 	@NotEmpty(message = "The phone must not be null")
 	private String phone;	// 联系电话
 	private MultipartFile imagefile;	// 图片
+	private String classify;
 	
 	public String getTitle() {
 		return title;
@@ -63,6 +64,11 @@ public class TaskDto {
 	public void setImagefile(MultipartFile imagefile) {
 		this.imagefile = imagefile;
 	}
-
+	public String getClassify() {
+		return classify;
+	}
+	public void setClassify(String classify) {
+		this.classify = classify;
+	}
 	
 }

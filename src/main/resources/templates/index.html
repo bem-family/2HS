@@ -4,16 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Flat HTML5/CSS3 Login Form</title>
-  
-  
-     <link rel="stylesheet"  th:href="@{/css/style.css}">
+  <link rel="stylesheet"  th:href="@{/css/style.css}">
 
-  
 </head>
 
 <body>
-
-
+	 <form th:action="@{/createClassify}" method="post">
+	 	<div>
+	 	<p>
+	 	创建分类：<input name="name" type="text"/>
+	 	</p>
+	 	<input name="" type="submit" value="提交">
+        <input name="" type="reset" value="取消">
+	 	</div>
+	 </form>
+	 
+	 <div th:each="classify : ${clist}">
+		<ul>
+			<li class="classify" th:id="${classify.id}"><a th:href="@{'/classify/' + ${classify.id} + '/findDetails/'}" th:text="${classify.name}"></a></li>
+		</ul>
+	 </div> 
 
 	<div  class="details" th:each="mlist,row:${list}" th:data-uid="${mlist.id}">
 		<a th:href="@{/task_detail/__${mlist.id}__}">
@@ -25,8 +35,8 @@
 	<div>
 		<form th:action="@{/taskCreate}" method="post" enctype="multipart/form-data">
         <div>
-			<p>标题：
-			<input name="title" type="text"><br /> 
+			<p>
+			标题：<input name="title" type="text"><br /> 
 			描述：<input name="content" type="text"><br /> 
 			价格：<input name="money" type="text"><br />
 			地点：<input name="address" type="text"><br /> 
@@ -39,8 +49,13 @@
 			  <input type="file" name="imagefile" id="fileField">
 			</div>
         </div>
+        
+        <select name="classify" id="classify">
+        	<option th:each="clist : ${clist}" th:value="${clist.id}" th:text="${clist.name}">选择分类</option>
+		</select>
+
         <div>
-        	<input name="" type="submit" value="提交">
+        	<input name="tasksubmit" type="submit" value="提交">
         	<input name="" type="reset" value="取消">
         </div>
         </form>
@@ -48,4 +63,19 @@
 </body>
 <script th:src="@{/js/jquery.min.js}"></script>
 <script th:src="@{/js/review.js}"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".classify").click(function() {
+			//event.preventDefault();
+			$.get($(this).attr("href"), function(returndata) {
+
+			});
+		});
+		$("[name='tasksubmit']").click(function(){
+			alert($('#classify option:selected').val());
+			//$('#classify option:selected').val();//选中的值
+			$.post("/taskCreate",{id:}
+		});
+	});
+</script>
 </html>
