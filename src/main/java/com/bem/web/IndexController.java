@@ -2,8 +2,9 @@ package com.bem.web;
 
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
@@ -93,6 +94,7 @@ public class IndexController extends BaseController{
 	public String checkAnswer(@RequestBody QuizDtoWrapper quizDto){
 		String answers = quizDto.getan();
 		String[] answer = answers.split("\\|");
+		Map status = new HashMap();
 		for(QuizDto attribute : quizDto.getQuizDto()) {
 			  System.out.println(attribute.getQuestion());
 		}
@@ -106,10 +108,13 @@ public class IndexController extends BaseController{
 			UserDetails userDetails=(UserDetails) context.getAuthentication().getPrincipal();
 			Authentication auth=new UsernamePasswordAuthenticationToken(userDetails,userDetails.getPassword(),authList);
 			context.setAuthentication(auth); 
-			return "success";
+			status.put("status", "success");
+			
 		}else{
-			return "fail";
+			status.put("status", "fail");
 		}
+		String json = JSON.toJSONString(status);  
+		return json;
 		
 	}
 	
