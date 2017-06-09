@@ -7,27 +7,26 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.validation.Valid;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.alibaba.fastjson.JSON;
+import com.bem.domain.Classify;
+import com.bem.domain.ClassifyDto;
 import com.bem.domain.QuizDto;
 import com.bem.domain.QuizDtoWrapper;
 import com.bem.domain.Task;
@@ -50,13 +49,26 @@ public class IndexController extends BaseController{
 	@Resource
 	private UserService userService;
 	
-	protected String sessuserid = "";
-	
 	@RequestMapping("/")
 	public String index(Model model){
 		List<Task> mlist = taskService.findAll();
+		List<Classify> clist = taskService.findAllClassify();
 		model.addAttribute("list", mlist);
+		model.addAttribute("clist", clist);
 		return "index";
+	}
+	
+	@GetMapping("/classify/{id}/findDetails")
+	public String findOneClassification(Model model ,@PathVariable String id){
+		List<Task> klist = taskService.findOneClassification(id);
+		model.addAttribute("klist", klist);
+		return "details";
+	}
+	
+	@PostMapping("/createClassify")
+	public String createClassify(ClassifyDto classifyDto){
+		taskService.saveClassify(getCurrentUser().getId() ,classifyDto);
+		return "redirect:/";
 	}
 
 	@GetMapping("/403")
@@ -75,7 +87,7 @@ public class IndexController extends BaseController{
 	@PostMapping("/taskCreate")
 	public String addTask(TaskDto taskCreateForm) {
 		taskService.save(getCurrentUser().getId(),taskCreateForm);
-		return "index";
+		return "redirect:/";
 	}
 	
 	@GetMapping("/deleteTask/{id}")
