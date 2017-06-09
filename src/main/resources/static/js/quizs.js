@@ -141,6 +141,20 @@
 			progressKeeper.hide();
 			var resultSet = '';
 			
+			$.postJSON = function(url, data, callback) {
+			    return jQuery.ajax({
+			    headers: { 
+			        'Accept': 'application/json',
+			        'Content-Type': 'application/json' 
+			    },
+			    'type': 'POST',
+			    'url': url,
+			    'data': JSON.stringify(data),
+			    'dataType': 'json',
+			    'success': callback
+			    });
+			};
+			
             if (config.sendResultsURL !== null) {
                 var collate = [];
 				var myanswers = '';
@@ -149,7 +163,7 @@
 					myanswers = myanswers + userAnswers[r]+'|';
                 }
 				
-				$.get(config.sendResultsURL,{an:myanswers},function(json){
+                $.postJSON(config.sendResultsURL,{an:myanswers,quizDto:config.questions},function(json){
 					console.log(json);
 					if(json==null){
 						alert('通讯失败！');
@@ -162,6 +176,7 @@
 						}
 					}	
 				},"json");
+			
             }
 			
             //superContainer.find('.resultsview-qhover').hide();
