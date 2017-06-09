@@ -151,7 +151,14 @@
 			    'url': url,
 			    'data': JSON.stringify(data),
 			    'dataType': 'json',
-			    'success': callback
+			    'success': callback,
+			    'error': function(XMLHttpRequest, textStatus, errorThrown) {
+			        //这个error函数调试时非常有用，如果解析不正确，将会弹出错误框
+			    　　　　alert(XMLHttpRequest.responseText); 
+			               alert(XMLHttpRequest.status);
+			               alert(XMLHttpRequest.readyState);
+			               alert(textStatus); // parser error;
+			    } 
 			    });
 			};
 			
@@ -168,12 +175,12 @@
 					if(json==null){
 						alert('通讯失败！');
 					}else{
-						var corects = eval("("+json+")");
-						if(corects == "success"){
+						if(json.status == "success"){
 							alert("认证成功");
 						}else{
 							alert("认证失败");
 						}
+						location.reload(); 
 					}	
 				},"json");
 			

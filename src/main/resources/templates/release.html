@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="msapplication-tap-highlight" content="no" /> -->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Resource sharing</title>
+  <link rel="stylesheet" href="../static/css/material.min.css">
+  <link rel="stylesheet" href="../static/css/material-icons.css">
+  <link rel="stylesheet" href="../static/css/mdl-selectfield.min.css">
+  <link rel="stylesheet" href="../static/css/dropzone.min.css">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <style>
+    
+  </style>
+</head>
+<body name="drawer_visible">
+<!-- Simple header with scrollable tabs. -->
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header" style="top: 0;">
+  <header class="mdl-layout__header po-fi"> <!--mdl-layout__header--waterfall-->
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title mdl-layout--large-screen-only">资源分享平台</span>
+      <div class="mdl-layout-spacer"></div>
+      <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp">
+        </div>
+      </div> -->
+      <button id="header-operate" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">more_vert</i>
+      </button>
+      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="header-operate">
+        <li class="mdl-menu__item"><a href="javascript:void(0);">操作1</a></li>
+        <li class="mdl-menu__item">其他操作</li>
+      </ul>
+    </div>
+    <div class="mdl-header-bar">
+      <h2 class="title">准备好发布了吗？</h2>
+      <p class="sm-title">Created with by the fine folks at BEM</p>
+    </div>
+    <!-- Tabs -->
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+      <!-- <a href="#scroll-tab-1" class="mdl-layout__tab is-active">全部</a>
+      <a href="#scroll-tab-2" class="mdl-layout__tab">分类 1</a>
+      <a href="#scroll-tab-3" class="mdl-layout__tab">分类 2</a>
+      <a href="#scroll-tab-4" class="mdl-layout__tab">分类 3</a>
+      <a href="#scroll-tab-5" class="mdl-layout__tab">分类 4</a>
+      <a href="#scroll-tab-6" class="mdl-layout__tab">分类 5</a> -->
+    </div>
+    <div class="entrance m1140_entrance">
+      <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp home-button" href="index.html">
+        <i class="material-icons">arrow_back</i>
+      </a>
+    </div>
+    <div class="mdl-layout__header-bg" style="background: url(../static/images/icon-seamless.png)"></div>
+    <div class="mdl-js-button mdl-js-ripple-effect mdl-layout__drawer-button menu-button">
+      <i class="material-icons">menu</i>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer po-fi">
+    <div class="userCenter">
+      <div class="info">
+        <div class="userImg"><a href="#"><img src="../static/images/user.jpg" alt=""></a></div>
+        <p class="userName">ZHAO-Shaofeng</p>
+        <p class="userEmail">bem.zhao@gmail.com</p>
+        <button id="userOperate" class="mdl-button mdl-js-button mdl-button--icon userOperate">
+          <i class="material-icons">arrow_drop_down</i>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect userOperate-ul" for="userOperate">
+          <li class="mdl-menu__item">退出登录</li>
+          <li class="mdl-menu__item">操作2</li>
+        </ul>
+      </div>
+      <img src="../static/images/material/banner17.png" alt="" class="user_bg_img">
+    </div>
+    <div class="nav_drawer">
+      <nav class="mdl-navigation">
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link active" href=""><i class="material-icons">home</i>首页</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">shopping_cart</i>我的发布</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">forum</i>消息</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">star</i>我的收藏</a>
+        <div class="mdl-navigation__link-line"></div>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">person</i>个人中心</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">settings</i>设置</a>
+      </nav>
+    </div>
+  </div>
+  <main class="mdl-layout__content"></main>
+</div>
+
+<div class="flex-content">
+  <div class="popUps_box mdl-grid mdl-shadow--4dp">
+    <form action="#">
+      <!-- <p class="popUps_title">准备好发布了吗？</p> -->
+      <div id="dropzone" class="dropzone">
+        <div class="dz-default dz-message">
+          <span class="material-icons">add</span>
+          <p>添加照片（最多5张）</p>
+        </div>
+      </div>
+      <div class="form_body">
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full">
+          <i class="material-icons icons">label</i>
+          <input class="mdl-textfield__input" type="text" id="res_name">
+          <label class="mdl-textfield__label" for="res_name">名称：</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full">
+          <i class="material-icons icons">place</i>
+          <input class="mdl-textfield__input" type="text" id="res_place">
+          <label class="mdl-textfield__label" for="res_place">交易地点：</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full">
+          <i class="material-icons icons">contact_mail</i>
+          <input class="mdl-textfield__input" type="text" id="res_way">
+          <label class="mdl-textfield__label" for="res_way">联系方式（QQ或微信）</label>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full">
+          <i class="material-icons icons">description</i>
+          <textarea class="mdl-textfield__input" type="text" rows= "3" id="res_description" ></textarea>
+          <label class="mdl-textfield__label" for="res_description">描述一下：</label>
+        </div>
+        <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label full">
+          <i class="material-icons icons">class</i>
+          <select id="res_classify" class="mdl-selectfield__select">
+            <option value=""></option>
+            <option value="option1">分类 1</option>
+            <option value="option2">分类 2</option>
+            <option value="option2">分类 2</option>
+          </select>
+          <div class="mdl-selectfield__icon pd0"><i class="material-icons">arrow_drop_down</i></div>
+          <label class="mdl-selectfield__label" for="res_classify">选择分类</label>
+        </div>
+      </div><!--form_body end-->
+      <div class="full">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect pull-right form_submit" type="button">
+          马上发布
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer id="footer">
+    Copyright &copy; 2017 breadem.com
+    
+    <ul class="f-menu">
+        <li><a href="#">发送反馈</a></li>
+        <li><a href="#">帮助</a></li>
+        <li><a href="#">联系我们</a></li>
+    </ul>
+</footer>
+
+
+
+<script src="../static/js/jquery-1.11.3.min.js"></script>
+<script src="../static/js/material.min.js"></script>
+<script src="../static/js/mdl-selectfield.min.js"></script>
+<script src="../static/js/dropzone.min.js"></script>
+<script src="../static/js/main.js"></script>
+<script>
+    Dropzone.autoDiscover = false;
+    $("#dropzone").dropzone({
+      url: "/upload",
+      method:"post",
+      maxFiles: 10,
+      // clickable: "#dropzone_btn",
+      addRemoveLinks: true,
+    });
+</script>
+<script>
+  $(document).on("click", function(){
+    if($(".mdl-layout__drawer").hasClass("is-visible")){ $("[name='drawer_visible']").css("overflow", "hidden"); }
+    else{ $("[name='drawer_visible']").css("overflow", "auto"); }
+  })
+</script>
+</body>
+</html>

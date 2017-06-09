@@ -3,9 +3,11 @@ package com.bem.domain;
 import java.sql.Timestamp;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import com.bem.utils.Time;
 
@@ -24,6 +26,9 @@ public class Task {
 	private Timestamp release_time;//发布时间
 	private String list_img;//图片集
 	private String scope;//所属范围
+	
+	@ManyToOne
+	private Classify classify;
 	
 	public Task(){
 		this.id = UUID.randomUUID().toString();
@@ -108,5 +113,15 @@ public class Task {
 	public void setScope(String scope) {
 		this.scope = scope;
 	}
-	
+
+
+	public Classify getClassify() {
+		return classify;
+	}
+
+	public void setClassify(Classify classify) {
+		this.classify = classify;
+	}
+
+
 }
