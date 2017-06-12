@@ -1,0 +1,734 @@
+/*base*/
+*, *:active, *:hover { outline: medium none !important;}
+a,img,button,input,textarea{-webkit-tap-highlight-color:rgba(0,0,0,0); -webkit-appearance:none;}
+/*input,textarea{-webkit-appearance:none;}*/   /*去掉textarea,input的默认样式  IOS上的圆角及内阴影等*/
+body {margin: 0; color: #5e5e5e; font-family: "微软雅黑",宋体,roboto,Arial; font-size: 13px; font-weight: 400; line-height: 1.42857; background-color: #fff;}
+a{text-decoration: none;}
+ul{list-style: none; padding: 0; margin: 0;}
+img{border:0;}
+.container{
+	margin: 0 auto;
+    width: 100%;
+	max-width: 1200px;
+}
+.pull-left{float: left !important;}
+.pull-right{float: right !important;}
+.text-center{text-align: center;}
+.ml0{margin-left: 0 !important;}
+.pd0{padding: 0 !important;}
+.po-re{position: relative !important;}
+.po-fi{position: fixed !important;}
+.full{width: 100% !important;}
+/*login*/
+.wx-scopy.anti-overflow{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.login_loading{display: none;}
+.login-content .form_title{
+    font-size: 30px;
+    font-weight: 100;
+    color: #5e5e5e;
+    position: absolute;
+    top: 25px;
+    left: 0;
+    width: 100%;
+    text-align: center; 
+}
+.login-content{
+    border-radius: 2px;
+    padding: 90px 56px 80px;
+    margin: -100px auto 0;
+    position: relative;
+    z-index: 1;
+    max-width: 450px;
+    width: 100%;
+}
+.ribbon{
+    width: 100%;
+    height: 280px;
+    background-color: rgb(76,175,80);
+    -webkit-flex-shrink: 0;
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    position: relative;
+}
+.switch-status{
+	position: absolute;
+    right: 7%;
+    bottom: -23px;
+    transition: 0.3s;
+    z-index: 2;
+    overflow: inherit;
+}
+.switch-status:not([name=switch-status-more]){transform: scale(0);}
+.switch-status.show{transform: scale(1);}
+#login_btn{bottom: -90px;}
+#register_btn{bottom: -157px;}
+#forget_btn{bottom: -224px;}
+#login_btn:before{
+    content: "登录";
+    position: absolute;
+    z-index: 999;
+    background: rgba(97,97,97,.9);
+    border-radius: 2px;
+    color: #fff;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 14px;
+    max-width: 170px;
+    width: 40px;
+    right: 66px;
+    top: 13px;
+    padding: 8px 0;
+    text-align: center;
+}
+#register_btn:before{
+    content: "注册新用户";
+    position: absolute;
+    z-index: 999;
+    background: rgba(97,97,97,.9);
+    border-radius: 2px;
+    color: #fff;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 14px;
+    max-width: 170px;
+    width: 76px;
+    right: 66px;
+    top: 13px;
+    padding: 8px 0;
+    text-align: center;
+}
+#forget_btn:before{
+    content: "忘记密码?";
+    position: absolute;
+    z-index: 999;
+    background: rgba(97,97,97,.9);
+    border-radius: 2px;
+    color: #fff;
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 14px;
+    max-width: 170px;
+    width: 71px;
+    right: 66px;
+    top: 13px;
+    padding: 8px 0;
+    text-align: center;
+}
+.login-content .mdl-textfield__label{font-size: 14px;}
+.forget-password{
+    position: absolute;
+    bottom: -50px;
+    right: 0;
+    text-decoration: none;
+    color: #aaa;
+}
+.alt-path{
+	position: absolute;
+	left: 0;
+	bottom: -50px;
+	width: auto;
+}
+.top-logo{
+	text-align: center;
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+}
+.top-logo h2{
+	color: #fff;
+    display: none;
+}
+.top-logo img{
+    width: 70px;
+    vertical-align: text-bottom;
+}
+.footer_in_bottom{
+	position: absolute;
+	bottom: 0;
+}
+.error {
+    font-size: 12px;
+    display: block;
+    color: #ff5722;
+    position: absolute;
+}
+.setpw i{
+    position: absolute;
+    right: 0;
+    font-size: 20px;
+    cursor: pointer;
+    color: rgba(0,0,0,.26);
+}
+.setpw i.open{color: rgb(76, 175, 80);}
+#footer { text-align: center; width: 100%; color: #a2a2a2; margin-top:40px; margin: 40px 0;}
+#footer .f-menu { display: block; width: 100%; padding-left: 0; list-style: none; margin-left: -5px; margin-top: 8px; font-size: 13px;}
+#footer .f-menu > li { display: inline-block; padding-left: 5px; padding-right: 5px;}
+#footer .f-menu > li > a { color: #a2a2a2; text-decoration: none;}
+#footer .f-menu > li > a:hover { color: #777; text-decoration:none;}
+.activation {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.activation .btn {
+    background-color: #2196f3 !important;
+    border-radius: 2px;
+    font-size: 12px;
+    line-height: 1.5;
+    padding: 5px 10px;
+    margin: 10px 0 0 0;
+    color: #fff !important;
+    font-weight: normal;
+    display: inline-block;
+    vertical-align: top;
+    border: 0;
+    cursor: pointer;
+}
+.forget-password:hover{
+	text-decoration: underline;
+	color: #ff4081;
+}
+.login-btn{
+	font-size: 13px;
+    height: 35px;
+    line-height: 35px;
+    margin-top: 8px;
+    width: 90px;
+    float: right;
+}
+.agree .mdl-checkbox__label{line-height: 22px;}
+label.remember{
+    width: inherit;
+    margin-top: 15px;
+}
+label.remember span.mdl-checkbox__label{font-size: 13px;}
+@media (min-width: 467px){
+	.vericode img {
+	    position: absolute;
+	    right: 0;
+	    top: 0;
+	    width: 120px;
+	    height: 30px;
+	    top: 10px;
+	}
+}
+@media (max-width: 768px){.footer_in_bottom{position: static;}}
+@media (max-width: 585px){
+    .switch-status{bottom: 67px;}
+    #login_btn{bottom: 0;}
+    #register_btn{bottom: -67px;}
+    #forget_btn{bottom: -134px;}
+    .ribbon{height: 200px;}
+    .top-logo h2{
+        font-weight: 100;
+        font-family: inherit;
+        font-size: 22px;
+        display: block;
+    }
+    .switch_mark{
+        transform: scale(0);
+        width: 56px;
+        height: 56px;
+        background: rgb(255, 140, 179);
+        border-radius: 50%;
+        right: 7%;
+        bottom: 0;
+        position: absolute;
+        z-index: 999;
+        opacity: 1;
+    }
+    .switch_mark.is-active{
+        -webkit-transform: scale(30);
+        -moz-transform: scale(30);
+        -o-transform: scale(30);
+        transform: scale(30);
+        transition: 0.6s;
+        background: #fff;
+    }
+    .switch_mark.remove{
+        opacity: 0;
+        transition: 0.8s;
+    }
+    .login_loading{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 28px;
+        height: 28px;
+        margin: -16px 0 0 -16px;
+        z-index: 999;
+        display: block;
+    }
+    .login_loading.low{z-index: -1;}
+    .login-content{
+        padding: 80px 30px 35px;
+        margin-left: 8px;
+        margin-right: 8px;
+        max-width: inherit;
+    }
+    .login-content .form_title{
+        font-size: 25px;
+        text-align: left;
+        text-indent: 25px;
+        border-left: 4px solid rgb(255,64,129);
+        font-weight: 400;
+    }
+    .login-btn{
+        background: rgb(255,64,129) !important;
+        color: #fff;
+    }
+}
+.login-btn:hover{
+    background: rgb(255,64,129) !important;
+    color: #fff;
+}
+.switch-status[name=switch-status-more]:before{
+    content: "";
+    position: absolute;
+    background: #fff;
+    width: 9px;
+    height: 2px;
+    transform: rotate(45deg);
+    transition: 0.3s;
+    left: 20px;
+}
+.switch-status[name=switch-status-more]:after{
+    content: "";
+    position: absolute;
+    background: #fff;
+    width: 9px;
+    height: 2px;
+    transform: rotate(-45deg);
+    transition: 0.3s;
+    left: 26px;
+}
+.switch-status.open[name=switch-status-more]:before{
+    width: 17px;
+    left: 19px;
+}
+.switch-status.open[name=switch-status-more]:after{
+    width: 17px;
+    left: 19px;
+}
+.ribbon:before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../images/material/banner9.jpg) center no-repeat;
+    opacity: 0.1;
+}
+.ripple_position{
+    position: absolute; 
+    right: 7%; 
+    bottom: 0; 
+    transition: 0.3s; 
+    z-index: 2; 
+    overflow: inherit;
+}
+form[name=register_form]{display: none;}
+.mdl-layout__content{
+    display: flex;
+    flex-direction: column;
+}
+.mdl-layout.is-upgraded .mdl-layout__tab-panel{flex: 1;}
+.mdl-layout__tab-bar, .mdl-layout__tab-bar-button{background-color: #43a047;}
+.mdl-layout__tab-bar.hide, .mdl-layout__tab-bar-button.hide{background-color: rgb(76,175,80);}
+.mdl-layout__header-bg{
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    filter:alpha(Opacity=15);
+    -moz-opacity:0.15;
+    opacity: 0.12;
+    transition: 0.3s;
+}
+.mdl-header-bar{
+    height: 156px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    transition: 0.3s;
+}
+.mdl-header-bar.hide{
+    height: 0;
+    opacity: 0;
+}
+.mdl-layout__header-bg.hide{opacity: 0;}
+.mdl-header-bar .title{
+    text-align: center;
+    font-size: 40px;
+    color: #fff;
+    margin: auto 0 0;
+}
+.mdl-header-bar .sm-title{
+    text-align: center;
+    font-size: 13px;
+    margin: 8px 0 auto;
+}
+.mdl-menu .mdl-menu__item a{
+    display: block;
+    color: rgba(0,0,0,.87);
+}
+.mdl-button--sm{
+    min-width: inherit;
+    box-shadow: none;
+    background: transparent;
+    color: rgb(76,175,80);
+}
+@media (max-width: 585px){
+    .mdl-button--sm{
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+    }
+    .mdl-layout__tab-bar, .mdl-layout__tab-bar-button{background-color: rgb(76,175,80);}
+    .mdl-header-bar{
+        height: 0;
+        opacity: 0;
+    }
+    .mdl-layout__header-bg{opacity: 0;}
+}
+header.mdl-layout__header,
+header .mdl-layout__drawer-button i{color: #fff;}
+header .mdl-textfield__input{border-color: #fff;}
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active,
+.mdl-layout__tab-bar-button.is-active{color: rgb(255, 255, 255);}
+.mdl-layout__tab{color: rgba(255, 255, 255, 0.5);}
+img.article-image {
+    width: 100%;
+    height: auto;
+}
+.portfolio-card .mdl-card__media a{
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+.portfolio-card .mdl-card__title {padding-bottom: 0;}
+.portfolio-card .mdl-card__title-text{
+    height: 26px;
+    font-size: 20px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+}
+.portfolio-card .mdl-card__supporting-text{
+    height: 36px;
+    overflow: hidden;
+    padding: 0 16px;
+    margin: 16px 0;
+}
+.portfolio-card .mdl-common-btn{
+    color: rgb(255,64,129);
+    min-width: inherit;
+}
+.card-hoverable{
+    transition: box-shadow .25s cubic-bezier(.4,0,.2,1);
+    will-change: box-shadow;
+}
+.portfolio-card:hover{box-shadow: 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12), 0 5px 5px -3px rgba(0,0,0,.2);}
+.entrance{
+    position: relative;
+    z-index: 3;
+    transition: 0.3s;
+}
+.entrance .home-button{
+    position: absolute;
+    right: 7%;
+    bottom: -23px;
+}
+@media (max-width: 839px){
+    .entrance{
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+    }
+    .entrance .home-button{position: static;}
+}
+@media (max-width: 768px) {
+    header .mdl-layout__drawer-button,
+    .mdl-layout__tab-bar-button{cursor: default;}
+    .portfolio-card .mdl-common-btn{
+        color: #fff;
+        background: rgb(255,64,129);
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    }
+    .portfolio-card .mdl-card__actions{padding: 16px;}
+}
+@media (max-width: 585px) {
+    .portfolio-card .mdl-card__title{padding: 16px 8px 0;}
+    .portfolio-card .mdl-card__title-text{font-size: 16px;}
+    .portfolio-card .mdl-common-btn{
+        font-size: 12px;
+        height: 30px;
+        line-height: 30px;
+    }
+    .portfolio-card .mdl-card__supporting-text{
+        font-size: 10px;
+        padding: 0 8px;
+        margin: 4px 0 10px;
+    }
+    .portfolio-card .mdl-card__actions{padding: 8px;}
+}
+@media (max-width: 320px) {.portfolio-card{width: 100% !important;}}
+/*pagination*/
+.pagination{
+    width: 100%;
+    text-align: center;
+    margin: 35px 0 0;
+}
+.pagination li{
+    display: inline-block;
+    min-width: inherit;
+    padding: 0;
+    width: 40px;
+    margin: 0 4px;
+}
+.pagination li a{
+    display: block;
+    color: #5e5e5e;
+}
+.pagination li.active{
+    background: rgb(76,175,80);
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+.pagination li.active a{color: #fff;}
+@media (max-width: 585px) {
+    .pagination{margin: 25px 0 0;}
+    .pagination li{
+        width: 36px;
+        height: 32px;
+        line-height: 32px;
+        margin: 0;
+    }
+}
+/*Left slip*/
+.mdl-layout__drawer{
+    width: 268px;
+    -webkit-transform: translateX(-278px);
+    transform: translateX(-278px);
+}
+.userCenter{
+    width: 100%;
+    height: 150px;
+    position: relative;
+}
+.userCenter .user_bg_img{
+    width: 100%;
+    max-height: 150px;
+}
+.userCenter .info{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    padding: 16px;
+    box-sizing: border-box;
+}
+.userCenter .info .userImg{
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid #fff;
+}
+.userCenter .info .userImg img{width: 100%;}
+.userCenter .info .userName,
+.userCenter .info .userEmail{
+    margin: 16px 0 0 0;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 400;
+    height: 24px;
+}
+.userCenter .info .userEmail{
+    margin: 0;
+    font-weight: 100;
+}
+.userCenter .info .userOperate{
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    color: #fff;
+}
+.userCenter .info .userOperate i{font-size: 20px;}
+.userCenter .info .userOperate-ul{width: 235px !important;}
+.mdl-layout__drawer .nav_drawer .mdl-navigation .mdl-navigation__link{
+    padding: 16px 0 16px 72px;
+    color: #000000;
+    position: relative;
+}
+.nav_drawer .mdl-navigation__link i{
+    position: absolute;
+    left: 16px;
+    color: #737373;
+}
+.mdl-layout__drawer .nav_drawer .mdl-navigation .mdl-navigation__link.active,
+.mdl-layout__drawer .nav_drawer .mdl-navigation .mdl-navigation__link.active i{color: rgb(255,64,129);}
+.mdl-layout__drawer .nav_drawer .mdl-navigation .mdl-navigation__link-line{
+    padding-top: 8px;
+    border-top: 1px solid #ddd;
+}
+/*Left slip end*/
+body[name=drawer_visible]{
+    display: flex;
+    flex-direction: column;
+}
+body[name=drawer_visible] .mdl-layout__container{position: relative;}
+body[name=drawer_visible] .mdl-layout__obfuscator{position: fixed;}
+.popUps_box{
+    position: relative;
+    z-index: 3;
+    margin: 210px auto 16px;
+    max-width: 768px;
+    width: 100%;
+    border-radius: 2px;
+    background: #fff;
+    transition: 0.3s;
+}
+.popUps_title{
+    font-size: 24px;
+    color: #000;
+    padding: 24px;
+}
+.popUps_box form{
+    margin: 30px 24px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.popUps_box .form_body{
+    padding: 0 0 0 90px;
+    flex: 7;
+}
+.popUps_box .form_body label, 
+.mdl-selectfield__select,
+.mdl-textfield__input{
+    color: #5e5e5e;
+    font-size: 13px;
+}
+.popUps_box .form_body .mdl-textfield i.icons,
+.popUps_box .form_body .mdl-selectfield i.icons{
+    position: absolute;
+    margin: 0 0 0 -50px;
+    top: 23px;
+    color: #737373;
+    font-size: 20px;
+}
+.mdl-selectfield--floating-label.is-focused .mdl-selectfield__label, .mdl-selectfield--floating-label.is-dirty .mdl-selectfield__label{color: rgb(76,175,80);}
+.mdl-selectfield__label:after{background-color: rgb(76,175,80);}
+header .mdl-layout__drawer-button{border-radius: 50%;}
+.mdl-layout__drawer-button.menu-button a{
+    position: relative;
+    z-index: 1;
+    display: block;
+}
+.form_submit{
+    color: #fff !important;
+    font-size: 13px;
+}
+#dropzone{
+    flex: 4;
+    border: 1px dashed rgba(66, 66, 66, 0.3);
+    padding: 0;
+}
+#dropzone .dz-message{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+}
+#dropzone .dz-message span{
+    color: #ddd;
+    font-size: 60px;
+}
+#dropzone .dz-message p{font-size: 13px;}
+.dropzone.dz-started .dz-message {display: none !important;}
+.dropzone .dz-preview{margin: 16px 0 0 16px;}
+.dropzone .dz-preview .dz-image{
+    border-radius: 2px;
+    width: 90px;
+    height: 90px;
+}
+.dropzone .dz-preview .dz-image img{width: 100%;}
+.dropzone .dz-preview .dz-success-mark, .dropzone .dz-preview .dz-error-mark{
+    margin-left: -18px;
+    margin-top: -26px;
+}
+.dropzone .dz-preview .dz-success-mark svg, .dropzone .dz-preview .dz-error-mark svg{
+    width: 36px;
+    height: 36px;
+}
+.dropzone .dz-preview .dz-details,
+.dropzone .dz-preview .dz-details .dz-size{font-size: 12px;}
+.flex-content{flex: 1;}
+@media (min-width: 586px) and (max-width: 1140px){
+    .m1140_entrance{
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+    }
+    .m1140_entrance .home-button {position: static;}
+    .popUps_box{width: auto;}
+    .flex-content{padding: 0 16px;}
+}
+@media (max-width: 585px){
+    #dropzone{
+        position: relative;
+        overflow: hidden;
+        min-height: 138px;
+        padding-bottom: 24px;
+        margin-bottom: 16px;
+    }
+    .dropzone .dz-preview{margin: 16px 0 0 14px;}
+    #dropzone .dz-message{position: absolute;}
+    .popUps_box{
+        z-index: 0;
+        box-shadow: none;
+        width: auto;
+        margin: 72px 16px 0;
+        padding: 0;
+    }
+    .popUps_box form{
+        display: block;
+        margin: 0;
+    }
+    .popUps_box .form_body{padding: 0 0 16px 36px;}
+    .popUps_box .form_body .mdl-textfield i.icons, .popUps_box .form_body .mdl-selectfield i.icons{margin: 0 0 0 -36px;}
+    .popUps_box .form_submit{width: 100%;}
+    body[name=drawer_visible] .mdl-layout__header-row:before{
+        content: "发布你的信息";
+        font-size: 16px;
+        color: #fff;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        text-align: center;
+        height: 56px;
+        line-height: 56px;
+    }
+    body[name=drawer_visible] .mdl-layout__tab-bar-container{display: none;}
+}
+@media (max-width: 350px){.dropzone .dz-preview{margin: 16px 0 0 8px;}}
+@media (max-width: 335px){.dropzone .dz-preview .dz-image{width: 83px; height: 83px;}}

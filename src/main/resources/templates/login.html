@@ -1,47 +1,129 @@
-<!DOCTYPE html>
+<!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Flat HTML5/CSS3 Login Form</title>
-  
-  
-  
-      <link rel="stylesheet" href="css/.css" th:href="@{/css/style.css}">
-
-  
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>Resource sharing</title>
+  <link rel="stylesheet" href="./css/lib/material.min.css" th:href="@{/css/lib/material.min.css}">
+  <link rel="stylesheet" href="./css/lib/material-icons.css" th:href="@{/css/lib/material-icons.css}">
+  <link rel="stylesheet" href="./css/lib/style.css" th:href="@{/css/lib/style.css}">
 </head>
-
 <body>
-  <div class="login-page">
-  <div class="form">
-    <form class="register-form" th:action="@{/registration}" method="POST">
-      <input type="text" name="username" placeholder="name"/>
-      <input type="password" name="password" placeholder="password"/>
-      <input type="password" name="confirm_password" placeholder="confirm_password"/>
-      <button class="register_btn">create</button>
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
-    </form>
-    <form class="login-form" th:action="@{/login}" method="POST">
-     <div th:if="${param.error}">
-            Invalid username and password.
-        </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
-        <label for="remember-me">Remember me</label>
-        <input type="checkbox" name="remember-me" id="remember-me">
-      <input type="text" placeholder="username" name="username"/>
-      <input type="password" placeholder="password" name="password"/>
-      <button type="submit">login</button>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
-    </form>
-  </div>
+<div class="mdl-spinner mdl-js-spinner login_loading low"></div>
+<div id="demo-toast-example" class="mdl-js-snackbar mdl-snackbar">
+  <div class="mdl-snackbar__text"></div>
+  <button class="mdl-snackbar__action" type="button"></button>
 </div>
- <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<div class="wx-scopy">
+  <div class="top-logo">
+    <h2>资源分享平台</h2>
+  </div><!--top-logo end-->
+  <div class="ribbon">
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent switch-status" name="switch-status-more"></button>
+    <div class="ripple_position">
+      <button id="login_btn" class="animated mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp switch-status" disabled>
+        <i class="material-icons">perm_identity</i>
+      </button>
+      <div class="switch_mark"></div>
+    </div>
+    <div class="ripple_position">
+      <button id="register_btn" class="animated mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent switch-status">
+        <i class="material-icons">add</i>
+      </button>
+      <div class="switch_mark"></div>
+    </div>
+    <div class="ripple_position">
+      <button id="forget_btn" class="animated mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent switch-status">
+        <i class="material-icons">warning</i>
+      </button>
+      <div class="switch_mark" style="bottom: -67px;"></div>
+    </div>
+  </div><!--ribbon end-->
+  <main class="mdl-grid">
+    <div class="login-content mdl-color--white mdl-shadow--2dp content mdl-color-text--grey-800 mdl-cell mdl-cell--3-col">
+      <form action="#" method="post" th:action="@{/login}" name="login_form">
+        <div class="form_title">Login</div>
+        <div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" name="username" />
+          <label class="mdl-textfield__label" for="username">用户名或邮箱</label>
+          <span class="error"></span>
+        </div>
+        <div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="margin-bottom: 20px;">
+          <input class="mdl-textfield__input" type="password" name="password" />
+          <label class="mdl-textfield__label" for="password">密码</label>
+          <span class="error"></span>
+        </div>
+        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect remember" for="remember-me">
+          <input type="checkbox" id="remember-me" name="remember-me" class="mdl-checkbox__input">
+          <span class="mdl-checkbox__label">记住我</span>
+        </label>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect login-btn" type="submit">登录</button>
+      </form>
+      <form action="#" method="post"  name="register_form">
+        <div class="form_title">Register</div>
+        <div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" name="accountid" pattern="^\w+$"/>
+          <label class="mdl-textfield__label" for="accountid">用户名（唯一且无法修改）</label>
+          <span class="mdl-textfield__error">由数字、26个英文字母或下划线组成</span>
+        </div>
+        <div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="email" name="email" pattern="[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?"/>
+          <label class="mdl-textfield__label" for="email">邮箱</label>
+          <span class="mdl-textfield__error">这不像是个邮箱</span>
+        </div>
+        <div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label setpw" id="setpw">
+          <i class="material-icons">remove_red_eye</i>
+          <input class="mdl-textfield__input" type="password" name="setpw"/>
+          <label class="mdl-textfield__label" for="setpw">密码</label>
+          <span class="mdl-textfield__error">密码不允许有中文字符</span>
+        </div>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect login-btn full" type="button">注册</button>
+      </form>
+    </div><!--login-content end-->
+  </main>
+  <footer id="footer" class="footer_in_bottom">
+      Copyright &copy; 2017 breadem.com
+      
+      <ul class="f-menu">
+          <li><a href="#">发送反馈</a></li>
+          <li><a href="#">帮助</a></li>
+          <li><a href="#">联系我们</a></li>
+      </ul>
+  </footer>
+</div><!--wx-scopy end-->
 
-    <script src="js/index.js" th:src="@{/js/index.js}"></script>
-    <script src="js/index.js" th:src="@{/js/login.js}"></script>
-
+<script src="./js/lib/jquery-1.11.3.min.js" th:src="@{/js/lib/jquery-1.11.3.min.js.js}"></script>
+<script src="./js/lib/material.min.js" th:src="@{/js/lib/material.min.js}"></script>
+<script src="./js/lib/main.js" th:src="@{/js/lib/main.js}"></script>
+<script>
+  // 判断密码是否有中文   未完成
+//   $("[name='setpw']").bind('input propertychange', function() {    
+// 　　var a=$("[name='setpw']").val();
+//     var reg=new RegExp("[\u4e00-\u9fa5]+");
+//     var o=reg.test(a);
+//     console.log(o);
+//     if(o == null){
+//       console.log("没有中文");
+//     }
+//     else{
+//       console.log("有中文");
+//     }
+//   });
+</script>
+<!-- 提示 -->
+<script>
+  (function() {
+    'use strict';
+    var snackbarContainer = document.querySelector('#demo-toast-example');
+    var showToastButton = document.querySelector('#forget_btn');
+    showToastButton.addEventListener('click', function() {
+      'use strict';
+      var data = {message: '尚未完善'};
+      snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    });
+  }());
+</script>
 </body>
 </html>
