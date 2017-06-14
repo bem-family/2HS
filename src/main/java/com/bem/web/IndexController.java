@@ -51,6 +51,7 @@ public class IndexController extends BaseController{
 	
 	@RequestMapping("/")
 	public String index(Model model){
+		User user = getCurrentUser();
 		List<Task> mlist = taskService.findAll();
 		List<Classify> clist = taskService.findAllClassify();
 		model.addAttribute("list", mlist);

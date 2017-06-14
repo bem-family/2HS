@@ -61,7 +61,7 @@
         </label>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect login-btn" type="submit">登录</button>
       </form>
-      <form action="#" method="post"  name="register_form">
+      <form th:action="@{/registration}" method="post" name="register_form">
         <div class="form_title">Register</div>
         <div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
           <input class="mdl-textfield__input" type="text" name="accountid" pattern="^\w+$"/>
@@ -79,7 +79,7 @@
           <label class="mdl-textfield__label" for="setpw">密码</label>
           <span class="mdl-textfield__error">密码不允许有中文字符</span>
         </div>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect login-btn full" type="button">注册</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect login-btn full" name="register-btn" type="button">注册</button>
       </form>
     </div><!--login-content end-->
   </main>
@@ -97,6 +97,7 @@
 <script src="./js/lib/jquery-1.11.3.min.js" th:src="@{/js/lib/jquery-1.11.3.min.js}"></script>
 <script src="./js/lib/material.min.js" th:src="@{/js/lib/material.min.js}"></script>
 <script src="./js/lib/main.js" th:src="@{/js/lib/main.js}"></script>
+<script src="./js/login.js" th:src="@{/js/login.js}"></script>
 <script>
   // 判断密码是否有中文   未完成
 //   $("[name='setpw']").bind('input propertychange', function() {    
