@@ -13,11 +13,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.bem.utils.PasswordMatches;
-import com.bem.utils.PasswordMatchesValidator;
 
-
-@PasswordMatches
 public class UserRegDto {
 	@NotEmpty(message = "*Please provide your username")
 	@Length(min = 6, message = "too_little")
@@ -26,10 +22,6 @@ public class UserRegDto {
 	@Length(min = 6, message = "*Your password must have at least 6 characters")
 	@NotEmpty(message = "*Please provide your password")
 	private String password;
-	
-	@Length(min = 6, message = "*Your password must have at least 6 characters")
-	@NotEmpty(message = "*Please provide your password")
-	private String confirm_password;
 	
 //	@Email(message = "*Please provide a valid Email")
 //	@NotEmpty(message = "*Please provide an email")	
@@ -53,14 +45,6 @@ public class UserRegDto {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public String getConfirm_password() {
-		return confirm_password;
-	}
-
-	public void setConfirm_password(String confirm_password) {
-		this.confirm_password = confirm_password;
 	}
 
 	public String getEmail() {
