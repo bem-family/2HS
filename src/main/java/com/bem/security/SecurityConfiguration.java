@@ -53,7 +53,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		http.csrf()
 			.disable()
 			.authorizeRequests()
-				.antMatchers("/","/home","/registration","getQuizs","/review").permitAll()
+				.antMatchers("/","/home","/registration","getQuizs","/review","/newPage").permitAll()
 				.anyRequest()
 				.authenticated()
 				.and()
@@ -78,7 +78,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 	    web
 	       .ignoring()
-	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**", "/fonts/**");
+	       .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**","/js/lib/**", "/images/**", "/fonts/**");
 	}
 
 }

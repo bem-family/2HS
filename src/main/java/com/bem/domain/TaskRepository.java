@@ -10,11 +10,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -63,38 +59,5 @@ public class TaskRepository {
 	
 	public void update(Task task){
 		getSession().update(task);
-	}
-	
-	/**
-	 * 全部分类
-	 * @return
-	 */
-	public List<Classify> findAllClassify() {
-		DetachedCriteria dc = DetachedCriteria.forClass(Classify.class);
-		Criteria criteria = dc.getExecutableCriteria(getSession());
-		return criteria.list();
-	}
-	
-	public void saveOneClassify(Classify classify) {
-		getSession().save(classify);
-	}
-	
-	public List<Task> findOneClassification(String kidClassificationId) {
-		DetachedCriteria dc = DetachedCriteria.forClass(Task.class);
-		dc.add(Restrictions.eq("classify.id", kidClassificationId));
-		Criteria criteria = dc.getExecutableCriteria(getSession());
-		return criteria.list();
-	}
-	
-	public Classify findOneById(String classifyById){
-		DetachedCriteria dc = DetachedCriteria.forClass(Classify.class);
-		dc.add(Restrictions.eq("id", classifyById));
-		Criteria criteria = dc.getExecutableCriteria(getSession());
-		List<Classify> list = criteria.list();
-		Classify classify = new Classify();
-		for(Classify item : list){
-			classify = item;
-		}
-		return classify;
 	}
 }

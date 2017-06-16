@@ -2,8 +2,7 @@
  * login and register
  */
 
-$(".register_btn").click(function register(event){
-	 	event.preventDefault();
+$("*[name='register-btn']").on("click", function register(){
 		var url = $(this).parents("form").attr("action");
 		var data = $(this).parents("form").serialize();
 		$.post(url, data, function(data){

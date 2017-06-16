@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Flat HTML5/CSS3 Login Form</title>
+  
+  
+  
+      <link rel="stylesheet" href="css/.css" th:href="@{/css/style.css}">
+
+  
+</head>
+
+<body>
+  <div class="login-page">
+  <div class="form">
+    <form class="register-form" th:action="@{/registration}" method="POST">
+      <input type="text" name="username" placeholder="name"/>
+      <input type="password" name="password" placeholder="password"/>
+      <input type="password" name="confirm_password" placeholder="confirm_password"/>
+      <button class="register_btn">create</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+    <form class="login-form" th:action="@{/login}" method="POST">
+     <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <label for="remember-me">Remember me</label>
+        <input type="checkbox" name="remember-me" id="remember-me">
+      <input type="text" placeholder="username" name="username"/>
+      <input type="password" placeholder="password" name="password"/>
+      <button type="submit">login</button>
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div>
+ <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="js/index.js" th:src="@{/js/index.js}"></script>
+    <script src="js/index.js" th:src="@{/js/login.js}"></script>
+
+</body>
+</html>
