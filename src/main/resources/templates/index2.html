@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>Resource sharing</title>
-  <link rel="stylesheet" href="../static/css/material.min.css">
-  <link rel="stylesheet" href="../static/css/material-icons.css">
-  <link rel="stylesheet" href="../static/css/mdl-selectfield.min.css">
-  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" th:href="@{/css/lib/material.min.css}">
+  <link rel="stylesheet" th:href="@{/css/lib/material-icons.css}">
+  <link rel="stylesheet" th:href="@{/css/lib/mdl-selectfield.min.css}">
+  <link rel="stylesheet" th:href="@{/css/lib/style.css}">
 </head>
 <body>
 <!-- Simple header with scrollable tabs. -->
@@ -40,13 +40,9 @@
       <p class="sm-title">Created with by the fine folks at BEM</p>
     </div>
     <!-- Tabs -->
-    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect" th:each="classify : ${clist}">
       <a href="#scroll-tab-1" class="mdl-layout__tab is-active">全部</a>
-      <a href="#scroll-tab-2" class="mdl-layout__tab">分类 1</a>
-      <a href="#scroll-tab-3" class="mdl-layout__tab">分类 2</a>
-      <a href="#scroll-tab-4" class="mdl-layout__tab">分类 3</a>
-      <a href="#scroll-tab-5" class="mdl-layout__tab">分类 4</a>
-      <a href="#scroll-tab-6" class="mdl-layout__tab">分类 5</a>
+      <a href="#scroll-tab-2" class="mdl-layout__tab" th:href="@{'/classify/' + ${classify.id} + '/findDetails/'}" th:text="${classify.name}">分类 1</a>
     </div>
     <div class="entrance">
       <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp home-button" href="release.html">
@@ -221,9 +217,9 @@
 </div>
 
 
-<script src="../static/js/jquery-1.11.3.min.js"></script>
-<script src="../static/js/material.min.js"></script>
-<script src="../static/js/mdl-selectfield.min.js"></script>
-<script src="../static/js/main.js"></script>
+<script th:src="@{/js/lib/jquery-1.11.3.min.js}"></script>
+<script th:src="@{/js/lib/material.min.js}"></script>
+<script th:src="@{/js/lib/mdl-selectfield.min.js}"></script>
+<script th:src="@{/js/lib/main.js}"></script>
 </body>
 </html>

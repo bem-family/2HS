@@ -26,13 +26,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 import com.bem.domain.Classify;
-import com.bem.domain.ClassifyDto;
 import com.bem.domain.QuizDto;
 import com.bem.domain.QuizDtoWrapper;
 import com.bem.domain.Task;
 import com.bem.domain.TaskDto;
 import com.bem.domain.User;
 import com.bem.domain.User.ROLE;
+import com.bem.service.ClassifyService;
 import com.bem.service.QuizService;
 import com.bem.service.TaskService;
 import com.bem.service.UserService;
@@ -49,29 +49,19 @@ public class IndexController extends BaseController{
 	@Resource
 	private UserService userService;
 	
+	@Resource
+	private ClassifyService classifyService;
+	
 	@RequestMapping("/")
 	public String index(Model model){
 		User user = getCurrentUser();
 		List<Task> mlist = taskService.findAll();
-		List<Classify> clist = taskService.findAllClassify();
+		List<Classify> clist = classifyService.findAllClassify();
 		model.addAttribute("list", mlist);
 		model.addAttribute("clist", clist);
-		return "index";
+		return "index2";
 	}
-	
-	@GetMapping("/classify/{id}/findDetails")
-	public String findOneClassification(Model model ,@PathVariable String id){
-		List<Task> klist = taskService.findOneClassification(id);
-		model.addAttribute("klist", klist);
-		return "details";
-	}
-	
-	@PostMapping("/createClassify")
-	public String createClassify(ClassifyDto classifyDto){
-		taskService.saveClassify(getCurrentUser().getId() ,classifyDto);
-		return "redirect:/";
-	}
-
+		
 	@GetMapping("/403")
     public String forbidden(){
         return "403";
