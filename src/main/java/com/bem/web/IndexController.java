@@ -55,7 +55,7 @@ public class IndexController extends BaseController{
 		List<Classify> clist = taskService.findAllClassify();
 		model.addAttribute("list", mlist);
 		model.addAttribute("clist", clist);
-		return "index";
+		return "index2";
 	}
 	
 	@GetMapping("/classify/{id}/findDetails")
