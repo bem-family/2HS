@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
   <title>Resource sharing</title>
-  <link rel="stylesheet" href="../static/css/material.min.css">
-  <link rel="stylesheet" href="../static/css/material-icons.css">
-  <link rel="stylesheet" href="../static/css/mdl-selectfield.min.css">
-  <link rel="stylesheet" href="../static/css/dropzone.min.css">
-  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" th:href="@{/css/lib/material.min.css}">
+  <link rel="stylesheet" th:href="@{/css/lib/material-icons.css}">
+  <link rel="stylesheet" th:href="@{/css/lib/mdl-selectfield.min.css}">
+  <link rel="stylesheet" th:href="@{/css/lib/dropzone.min.css}">
+  <link rel="stylesheet" th:href="@{/css/lib/style.css}">
   <style>
     
   </style>
@@ -57,7 +57,7 @@
         <i class="material-icons">arrow_back</i>
       </a>
     </div>
-    <div class="mdl-layout__header-bg" style="background: url(../static/images/icon-seamless.png)"></div>
+    <div class="mdl-layout__header-bg" style="background: url(@{/images/icon-seamless.png)"></div>
     <div class="mdl-js-button mdl-js-ripple-effect mdl-layout__drawer-button menu-button">
       <i class="material-icons">menu</i>
     </div>
@@ -65,7 +65,7 @@
   <div class="mdl-layout__drawer po-fi">
     <div class="userCenter">
       <div class="info">
-        <div class="userImg"><a href="#"><img src="../static/images/user.jpg" alt=""></a></div>
+        <div class="userImg"><a href="#"><img src="@{/images/user.jpg" alt=""></a></div>
         <p class="userName">ZHAO-Shaofeng</p>
         <p class="userEmail">bem.zhao@gmail.com</p>
         <button id="userOperate" class="mdl-button mdl-js-button mdl-button--icon userOperate">
@@ -76,7 +76,7 @@
           <li class="mdl-menu__item">操作2</li>
         </ul>
       </div>
-      <img src="../static/images/material/banner17.png" alt="" class="user_bg_img">
+      <img src="@{/images/material/banner17.png" alt="" class="user_bg_img">
     </div>
     <div class="nav_drawer">
       <nav class="mdl-navigation">
@@ -95,7 +95,7 @@
 
 <div class="flex-content">
   <div class="popUps_box mdl-grid mdl-shadow--4dp">
-    <form action="#">
+    <form action="taskCreate" method="post" enctype="multipart/form-data">
       <!-- <p class="popUps_title">准备好发布了吗？</p> -->
       <div id="dropzone" class="dropzone">
         <div class="dz-default dz-message">
@@ -106,27 +106,27 @@
       <div class="form_body">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full">
           <i class="material-icons icons">label</i>
-          <input class="mdl-textfield__input" type="text" id="res_name">
+          <input class="mdl-textfield__input" name="title" type="text" id="res_name">
           <label class="mdl-textfield__label" for="res_name">名称：</label>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full">
           <i class="material-icons icons">place</i>
-          <input class="mdl-textfield__input" type="text" id="res_place">
+          <input class="mdl-textfield__input" name="address"  type="text" id="res_place">
           <label class="mdl-textfield__label" for="res_place">交易地点：</label>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full">
           <i class="material-icons icons">contact_mail</i>
-          <input class="mdl-textfield__input" type="text" id="res_way">
+          <input class="mdl-textfield__input" name="qq"  type="text" id="res_way">
           <label class="mdl-textfield__label" for="res_way">联系方式（QQ或微信）</label>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full">
           <i class="material-icons icons">description</i>
-          <textarea class="mdl-textfield__input" type="text" rows= "3" id="res_description" ></textarea>
+          <textarea class="mdl-textfield__input" name="content" type="text" rows= "3" id="res_description" ></textarea>
           <label class="mdl-textfield__label" for="res_description">描述一下：</label>
         </div>
         <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label full">
           <i class="material-icons icons">class</i>
-          <select id="res_classify" class="mdl-selectfield__select">
+          <select id="res_classify" name="classify" class="mdl-selectfield__select">
             <option value=""></option>
             <option value="option1">分类 1</option>
             <option value="option2">分类 2</option>
@@ -137,7 +137,7 @@
         </div>
       </div><!--form_body end-->
       <div class="full">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect pull-right form_submit" type="button">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect pull-right form_submit" type="submit">
           马上发布
         </button>
       </div>
@@ -157,18 +157,19 @@
 
 
 
-<script src="../static/js/jquery-1.11.3.min.js"></script>
-<script src="../static/js/material.min.js"></script>
-<script src="../static/js/mdl-selectfield.min.js"></script>
-<script src="../static/js/dropzone.min.js"></script>
-<script src="../static/js/main.js"></script>
+<script th:src="@{/js/lib/jquery-1.11.3.min.js}"></script>
+<script th:src="@{/js/lib/material.min.js}"></script>
+<script th:src="@{/js/lib/mdl-selectfield.min.js}"></script>
+<script th:src="@{/js/lib/dropzone.min.js}"></script>
+<script th:src="@{/js/lib/main.js}"></script>
 <script>
     Dropzone.autoDiscover = false;
     $("#dropzone").dropzone({
       url: "/upload",
-      method:"post",
+      method:"get",
       maxFiles: 10,
-      // clickable: "#dropzone_btn",
+      
+      clickable: "#dropzone_btn",
       addRemoveLinks: true,
     });
 </script>

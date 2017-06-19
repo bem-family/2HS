@@ -8,6 +8,10 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
+import org.apache.tomcat.util.http.fileupload.UploadContext;
+import org.codehaus.groovy.util.ReleaseInfo;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -23,6 +27,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.support.HttpRequestHandlerServlet;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.alibaba.fastjson.JSON;
 import com.bem.domain.Classify;
@@ -62,13 +68,21 @@ public class IndexController extends BaseController{
 		return "index2";
 	}
 	
-	@GetMapping("/classify/{id}/findDetails")
-	public String findOneClassification(Model model ,@PathVariable String id){
-		List<Task> klist = taskService.findOneClassification(id);
-		model.addAttribute("klist", klist);
-		return "details";
-	}
+	/*	@GetMapping("/classify/{id}/findDetails")
+		public String findOneClassification(Model model ,@PathVariable String id){
+			List<Task> klist = taskService.findOneClassification(id);
+			model.addAttribute("klist", klist);
+			return "details";
+		}*/
 		
+	
+	
+	@GetMapping("/release")
+	public String Release(){
+		return "release";
+	}
+	
+	
 	@GetMapping("/403")
     public String forbidden(){
         return "403";
@@ -88,6 +102,7 @@ public class IndexController extends BaseController{
 		return "redirect:/";
 	}
 	
+
 	@GetMapping("/deleteTask/{id}")
 	public String deleteTask(@PathVariable String id){
 		taskService.delete(id);

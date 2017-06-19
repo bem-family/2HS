@@ -1,5 +1,7 @@
 package com.bem.domain;
 
+import java.util.ArrayList;
+
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -11,15 +13,10 @@ public class TaskDto {
 	private String title;	// 标题
 	@NotEmpty(message = "The content must not be null")
 	private String content;	// 描述
-	@NotEmpty(message = "The money must not be null")
-	private String money;	// 价格
 	@NotEmpty(message = "The address must not be null")
 	private String address;	// 地址
 	private String qq;	// 企鹅号
-	@Size(min = 13, max = 13,message="input proper number")
-	@NotEmpty(message = "The phone must not be null")
-	private String phone;	// 联系电话
-	private MultipartFile imagefile;	// 图片
+	private ArrayList<MultipartFile> imagefile;	// 图片
 	private String classify;
 	
 	
@@ -29,17 +26,14 @@ public class TaskDto {
 	}
 	
 	
-	public TaskDto(String title, String content, String money, String address, String qq, String phone,
+/*	public TaskDto(String title, String content, String money, String address, String qq, String phone,
 			MultipartFile imagefile) {
 		super();
 		this.title = title;
 		this.content = content;
-		this.money = money;
 		this.address = address;
 		this.qq = qq;
-		this.phone = phone;
-		this.imagefile = imagefile;
-	}
+	}*/
 
 
 	public String getTitle() {
@@ -54,12 +48,7 @@ public class TaskDto {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getMoney() {
-		return money;
-	}
-	public void setMoney(String money) {
-		this.money = money;
-	}
+	
 	public String getAddress() {
 		return address;
 	}
@@ -72,18 +61,7 @@ public class TaskDto {
 	public void setQq(String qq) {
 		this.qq = qq;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	public MultipartFile getImagefile() {
-		return imagefile;
-	}
-	public void setImagefile(MultipartFile imagefile) {
-		this.imagefile = imagefile;
-	}
+	
 	public String getClassify() {
 		return classify;
 	}
