@@ -2,7 +2,9 @@ package com.bem.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.KeyStore.PrivateKeyEntry;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,23 +12,28 @@ import javax.annotation.Resource;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.bem.domain.Classify;
 import com.bem.domain.ClassifyRepository;
 import com.bem.domain.Task;
 import com.bem.domain.TaskDto;
 import com.bem.domain.TaskRepository;
+import com.bem.utils.MultipartFileMove;
 
 @Component
 public class TaskService {
 	
 	@Resource
 	private TaskRepository taskRepository;
-
+	
+	@Resource
+	private MultipartFileMove file_move;
+	
 	@Resource
 	private ClassifyRepository classifyRepository;
 
-	public void save(String sessuserid, TaskDto taskCreateForm) {
+	/*public void save(String sessuserid, TaskDto taskCreateForm) {
 		MultipartFile mfile = taskCreateForm.getImagefile();	//得到图片文件
 		String mFileName = new Date().getTime() + mfile.getOriginalFilename();	// 文件名
 		System.out.println(mFileName);
@@ -55,6 +62,15 @@ public class TaskService {
 			task.setClassify(classify);
 			task.setList_img(mFileName);
 			taskRepository.save(task);
+		}
+	}*/
+	public void save(MultipartHttpServletRequest request){
+		Iterator<String> itr = request.getFileNames();
+		System.err.println(itr.hasNext());
+		while(itr.hasNext()){
+			String FileName = itr.next();
+			MultipartFile file = request.getFile(FileName);
+			file_move.file_move(file);
 		}
 	}
 	

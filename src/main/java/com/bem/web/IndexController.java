@@ -96,13 +96,25 @@ public class IndexController extends BaseController{
 	
 	//新增一条首页信息
 
-	@PostMapping("/taskCreate")
+	/*@PostMapping("/taskCreate")
 	public String addTask(TaskDto taskCreateForm) {
 		taskService.save(getCurrentUser().getId(),taskCreateForm);
 		return "redirect:/";
+	}*/
+	@GetMapping("/upload")
+	public String add(MultipartHttpServletRequest request) {
+		System.err.println(request.getFileNames());
+		taskService.save(request);
+		return "redirect:/";
 	}
 	
-
+	@PostMapping("/taskCreate")
+	public String addTask(MultipartHttpServletRequest request,TaskDto taskCreateForm) {
+		System.err.println(request.getFileNames());
+		taskService.save(request);
+		return "redirect:/";
+	}
+	
 	@GetMapping("/deleteTask/{id}")
 	public String deleteTask(@PathVariable String id){
 		taskService.delete(id);
