@@ -2,7 +2,6 @@ package com.bem.service;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.KeyStore.PrivateKeyEntry;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -14,12 +13,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.bem.domain.Classify;
-import com.bem.domain.ClassifyRepository;
 import com.bem.domain.Task;
 import com.bem.domain.TaskDto;
-import com.bem.domain.TaskRepository;
+import com.bem.repository.ClassifyRepository;
+import com.bem.repository.TaskRepository;
 import com.bem.utils.MultipartFileMove;
+
+import antlr.debug.Event;
 
 @Component
 public class TaskService {
@@ -33,45 +33,42 @@ public class TaskService {
 	@Resource
 	private ClassifyRepository classifyRepository;
 
-	/*public void save(String sessuserid, TaskDto taskCreateForm) {
-		MultipartFile mfile = taskCreateForm.getImagefile();	//得到图片文件
-		String mFileName = new Date().getTime() + mfile.getOriginalFilename();	// 文件名
-		System.out.println(mFileName);
-		// 储存缓存文件地址
-		String Path = Class.class.getClass().getResource("/").getPath() + "static/images/";
-		File file = new File(Path);
-		// 创建文件夹
-		if (!file.isDirectory()) {
-			file.mkdir();
+	public void save(MultipartFile file) {
+		String mFileName = new Date().getTime() + file.getOriginalFilename();	// 文件名
+		System.out.println(mFileName);// 储存缓存文件地址
+		String Path ="d:/images/";
+		File mfile = new File(Path);// 创建文件夹
+		if (!mfile.isDirectory()) {
+			mfile.mkdir();
 		}
-		String imageFilePath = Path + mFileName;
-		// 移动文件夹到指定目录
-		if (mfile.isEmpty()) {
-
-		} else {
-			File mImageFile = new File(imageFilePath);
-			try {
-				mfile.transferTo(mImageFile);
-			} catch (IllegalStateException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			Task task = new Task();
-			BeanUtils.copyProperties(taskCreateForm, task, Task.class);
-			Classify classify = classifyRepository.findOneById(taskCreateForm.getClassify());
-			task.setClassify(classify);
-			task.setList_img(mFileName);
-			taskRepository.save(task);
+		String imageFilePath = Path + mFileName;// 移动文件夹到指定目录
+		File mImageFile = new File(imageFilePath);
+		try {
+			file.transferTo(mImageFile);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	}*/
+			
+	}
 	public void save(MultipartHttpServletRequest request){
-		Iterator<String> itr = request.getFileNames();
+		Iterator<String> iter = request.getFileNames();  
+		while(iter.hasNext()){
+			System.err.println(request.getFileNames());
+			String FileName = request.getFileNames().next();
+			MultipartFile file  = request.getFile(FileName);
+			save(file);
+		}
+		/*Iterator<String> itr = request.getFileNames();
 		System.err.println(itr.hasNext());
 		while(itr.hasNext()){
 			String FileName = itr.next();
 			MultipartFile file = request.getFile(FileName);
 			file_move.file_move(file);
-		}
+		}*/
 	}
 	
 	public List<Task> findAll(){

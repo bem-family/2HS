@@ -1,4 +1,4 @@
-package com.bem.domain;
+package com.bem.repository;
 
 import java.util.List;
 
@@ -11,6 +11,9 @@ import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
+
+import com.bem.domain.Classify;
+import com.bem.domain.Task;
 
 @Component
 @Transactional
@@ -27,7 +30,7 @@ public class ClassifyRepository {
 		getSession().save(classify);
 	}
 	
-	/**
+	/** 
 	 * 全部分类
 	 * @return
 	 */

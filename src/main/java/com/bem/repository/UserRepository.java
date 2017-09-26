@@ -1,6 +1,4 @@
-package com.bem.domain;
-
-import java.util.List;
+package com.bem.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,6 +10,9 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
+
+import com.bem.domain.LocalAuth;
+import com.bem.domain.User;
 
 @Component
 @Transactional

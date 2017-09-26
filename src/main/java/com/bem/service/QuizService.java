@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import com.bem.domain.Quiz;
 import com.bem.domain.QuizDto;
 import com.bem.domain.QuizDtoWrapper;
-import com.bem.domain.QuizRepository;
+import com.bem.repository.QuizRepository;
 
 @Component
 public class QuizService {

@@ -1,4 +1,4 @@
-package com.bem.domain;
+package com.bem.repository;
 
 
 import java.util.List;
@@ -12,6 +12,8 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
+
+import com.bem.domain.Task;
 
 @Component
 @Transactional

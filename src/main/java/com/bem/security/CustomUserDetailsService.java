@@ -5,15 +5,13 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import com.bem.domain.LocalAuth;
-import com.bem.domain.User;
-import com.bem.domain.UserRepository;
+import com.bem.repository.UserRepository;
 
 
 public class CustomUserDetailsService implements UserDetailsService {

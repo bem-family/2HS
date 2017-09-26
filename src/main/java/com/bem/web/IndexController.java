@@ -88,7 +88,6 @@ public class IndexController extends BaseController{
         return "403";
     }
 	
-	@PreAuthorize("hasAnyAuthority('USER')")
 	@GetMapping("/newPage")
 	public String newpage(){
 		return "new";
@@ -98,10 +97,10 @@ public class IndexController extends BaseController{
 
 	/*@PostMapping("/taskCreate")
 	public String addTask(TaskDto taskCreateForm) {
-		taskService.save(getCurrentUser().getId(),taskCreateForm);
+		//taskService.save(getCurrentUser().getId(),taskCreateForm);
 		return "redirect:/";
 	}*/
-	@GetMapping("/upload")
+	@PostMapping("/upload")
 	public String add(MultipartHttpServletRequest request) {
 		System.err.println(request.getFileNames());
 		taskService.save(request);

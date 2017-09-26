@@ -1,19 +1,14 @@
 package com.bem.service;
 
-import java.util.UUID;
-
 import javax.annotation.Resource;
 
-import org.apache.tomcat.jni.Local;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bem.domain.LocalAuth;
 import com.bem.domain.User;
 import com.bem.domain.UserRegDto;
-import com.bem.domain.UserRepository;
+import com.bem.repository.UserRepository;
 import com.bem.utils.Constant;
 
 

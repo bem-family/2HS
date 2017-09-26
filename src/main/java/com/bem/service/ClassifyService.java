@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 import com.bem.domain.Classify;
 import com.bem.domain.ClassifyDto;
-import com.bem.domain.ClassifyRepository;
 import com.bem.domain.Task;
+import com.bem.repository.ClassifyRepository;
 
 @Component
 public class ClassifyService {

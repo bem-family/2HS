@@ -1,21 +1,20 @@
-package com.bem.domain;
+package com.bem.repository;
 
 
 
 import java.util.List;
 
-import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
-import org.aspectj.weaver.ast.And;
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
+
+import com.bem.domain.Review;
 
 @Component
 @Transactional

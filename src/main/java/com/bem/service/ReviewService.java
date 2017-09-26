@@ -1,6 +1,5 @@
 package com.bem.service;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,8 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import com.bem.domain.Review;
-import com.bem.domain.ReviewRepository;
-import com.bem.web.BaseController;
+import com.bem.repository.ReviewRepository;
 
 @Component
 public class ReviewService {
