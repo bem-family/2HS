@@ -40,7 +40,14 @@ public class UserRepository {
 	public void UpdateUser(User user){
 		getSession().update(user);
 	}
-	
+	public User findUserByUserId(String userId){
+		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+		CriteriaQuery<User> query  = builder.createQuery(User.class);
+		Root<User> root =query.from(User.class);
+		query.where(builder.equal(root.get("id"),(userId)));
+		User user = entityManager.createQuery(query).getSingleResult();
+		return user;
+	}
 	public LocalAuth findUserByAccount(String account){
 		LocalAuth localAuth = new LocalAuth();
 		try {

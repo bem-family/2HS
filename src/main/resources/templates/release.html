@@ -40,7 +40,7 @@
       </ul>
     </div>
     <div class="mdl-header-bar">
-      <h2 class="title">准备好发布了吗？</h2>
+      <h2 id="test" class="title">准备好发布了吗？</h2>
       <p class="sm-title">Created with by the fine folks at BEM</p>
     </div>
     <!-- Tabs -->
@@ -106,27 +106,28 @@
       <div class="form_body">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full">
           <i class="material-icons icons">label</i>
-          <input class="mdl-textfield__input" name="title" type="text" id="res_name">
+          <input class="mdl-textfield__input" name="title" value="123123"  type="text" id="res_name">
+          <input class="mdl-textfield__input" name="title" value="123123"  type="hidden" >
           <label class="mdl-textfield__label" for="res_name">名称：</label>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full">
           <i class="material-icons icons">place</i>
-          <input class="mdl-textfield__input" name="address"  type="text" id="res_place">
+          <input class="mdl-textfield__input" name="address"   type="text" id="res_place">
           <label class="mdl-textfield__label" for="res_place">交易地点：</label>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full">
           <i class="material-icons icons">contact_mail</i>
-          <input class="mdl-textfield__input" name="qq"  type="text" id="res_way">
+          <input class="mdl-textfield__input" name="qq"   type="text" id="res_way">
           <label class="mdl-textfield__label" for="res_way">联系方式（QQ或微信）</label>
         </div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label full">
           <i class="material-icons icons">description</i>
-          <textarea class="mdl-textfield__input" name="content" type="text" rows= "3" id="res_description" ></textarea>
+          <textarea class="mdl-textfield__input" name="content" type="text"   rows= "3" id="res_description" ></textarea>
           <label class="mdl-textfield__label" for="res_description">描述一下：</label>
         </div>
         <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label full">
           <i class="material-icons icons">class</i>
-          <select id="res_classify" name="classify" class="mdl-selectfield__select">
+          <select id="res_classify" name="classify"   class="mdl-selectfield__select">
             <option value=""></option>
             <option value="option1">分类 1</option>
             <option value="option2">分类 2</option>
@@ -137,7 +138,7 @@
         </div>
       </div><!--form_body end-->
       <div class="full">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect pull-right form_submit" type="submit">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect pull-right form_submit" id="submit" type="submit">
           马上发布
         </button>
       </div>
@@ -164,21 +165,63 @@
 <script th:src="@{/js/lib/main.js}"></script>
 <script>
     Dropzone.autoDiscover = false;
+    
+    
     $("#dropzone").dropzone({
       url: "/upload",
       method:"post",
       maxFiles: 10,
       maxFilesize: 5,
+      maxThumbnailFilesize:5,
+      autoProcessQueue:false,
       addRemoveLinks: true,
+      uploadMultiple:true,
       init: function() {
+    	  
+      	var myDropzone = this;
           this.on("success", function(file) {
               console.log("File " + file.name + "uploaded");
           });
           this.on("removedfile", function(file) {
               console.log("File " + file.name + "removed");
           });
+          
+          this.on("sending",function(file,xhr,formData){
+       	  	/* 	console.log(file);
+       	  	console.log("-1");
+	        	  formData.append('title',$("#res_name").val());
+	        	  formData.append('content',$("#res_description").val());
+	        	  formData.append('address',$("#res_place").val());
+	        	  formData.append('qq',$("#res_way").val());
+	        	  formData.append('classify',$("#res_classify").val()); */
+        	  
+          });
+          this.on("processing",function(file){
+        	 console.log(file); 
+        	 console.log("---------------------------");
+          });
+          this.on("processingmultiple",function(file){
+        	  console.log(file);
+          })
+          
+          
+          
+          $("#test").on("click",function(){
+        	  myDropzone.processQueue();
+            
+           });
+          
       }
     });
+    
+   
+    
+   /*  var myDropzone = new Dropzone("#dropzone");
+    myDropzone.on("complete", function(file){
+    	myDropzone.processQueue();
+    
+    }); */
+  
 </script>
 <script>
   $(document).on("click", function(){

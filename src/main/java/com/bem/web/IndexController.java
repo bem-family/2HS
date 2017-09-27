@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.support.HttpRequestHandlerServlet;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -101,18 +102,17 @@ public class IndexController extends BaseController{
 		return "redirect:/";
 	}*/
 	@PostMapping("/upload")
-	public String add(MultipartHttpServletRequest request) {
-		System.err.println(request.getFileNames());
-		taskService.save(request);
+	public String add(MultipartHttpServletRequest request,TaskDto taskDto) {
+		taskService.save(request,taskDto);
 		return "redirect:/";
 	}
 	
-	@PostMapping("/taskCreate")
+	/*@PostMapping("/taskCreate")
 	public String addTask(MultipartHttpServletRequest request,TaskDto taskCreateForm) {
 		System.err.println(request.getFileNames());
 		taskService.save(request);
 		return "redirect:/";
-	}
+	}*/
 	
 	@GetMapping("/deleteTask/{id}")
 	public String deleteTask(@PathVariable String id){

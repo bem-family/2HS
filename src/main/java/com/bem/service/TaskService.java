@@ -2,12 +2,14 @@ package com.bem.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.coyote.http11.filters.VoidInputFilter;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +35,7 @@ public class TaskService {
 	@Resource
 	private ClassifyRepository classifyRepository;
 
-	public void save(MultipartFile file) {
+	public void save(MultipartFile file,ArrayList<String> list) {
 		String mFileName = new Date().getTime() + file.getOriginalFilename();	// 文件名
 		System.out.println(mFileName);// 储存缓存文件地址
 		String Path ="d:/images/";
@@ -52,24 +54,24 @@ public class TaskService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-			
+		list.add(mFileName);
 	}
-	public void save(MultipartHttpServletRequest request){
-		Iterator<String> iter = request.getFileNames();  
-		while(iter.hasNext()){
+	public void save(MultipartHttpServletRequest request,TaskDto taskDto){
+		Task task = new Task();
+		ArrayList<String> list = new ArrayList();
+		BeanUtils.copyProperties(taskDto,task);
+		if(request.getFileNames().hasNext()){
+			System.err.println(request.getFileMap());
 			System.err.println(request.getFileNames());
 			String FileName = request.getFileNames().next();
 			MultipartFile file  = request.getFile(FileName);
-			save(file);
-		}
-		/*Iterator<String> itr = request.getFileNames();
-		System.err.println(itr.hasNext());
-		while(itr.hasNext()){
-			String FileName = itr.next();
-			MultipartFile file = request.getFile(FileName);
-			file_move.file_move(file);
-		}*/
+			save(file,list);
+		};
+		task.setList_img(list);
+		taskRepository.save(task);
 	}
+	
+	
 	
 	public List<Task> findAll(){
 		return taskRepository.findAll();

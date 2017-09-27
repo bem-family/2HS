@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- <meta name="msapplication-tap-highlight" content="no" /> -->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+  <title>资源分享平台</title>
+  <link rel="stylesheet" th:href="@{/css/lib/material.min.css}">
+  <link rel="stylesheet" th:href="@{/css/lib/material-icons.css}">
+  <link rel="stylesheet" th:href="@{/css/lib/mdl-selectfield.min.css}">
+  <link rel="stylesheet" th:href="@{/css/lib/style.css}">
+</head>
+<body name="drawer_visible">
+<!-- Simple header with scrollable tabs. -->
+<div id="scroll-main" class="mdl-layout mdl-js-layout po-fi">
+  <header class="mdl-layout__header mdl-shadow--2dp po-re usermain_header mdl-layout__header--scroll">
+    <div class="mdl-layout__header-row po-fi high-layer">
+      <!-- Title -->
+      <span class="mdl-layout-title mdl-layout--large-screen-only logo"><a href="index.html">资源分享平台</a></span>
+      <div class="mdl-layout-spacer"></div>
+      <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
+          <i class="material-icons">search</i>
+        </label>
+        <div class="mdl-textfield__expandable-holder">
+          <input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp">
+        </div>
+      </div> -->
+      <button id="header-operate" class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">more_vert</i>
+      </button>
+      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="header-operate">
+        <li class="mdl-menu__item"><a href="javascript:void(0);">操作1</a></li>
+        <li class="mdl-menu__item">其他操作</li>
+      </ul>
+      <div id="header-gopactiy" class="mdl-fixed-header-bg"></div>
+    </div>
+    <div id="userbar-gopactiy" class="mdl-header-userbar">
+      <div class="container">
+        <div class="flexshow">
+          <div class="userhead"><img src="../static/images/user.jpg" alt=""></div>
+          <div class="userinfo">
+            <h3 class="name">ZHAO-Shaofeng</h3>
+            <p class="email">bem.zhao@gmail.com</p>
+            <p class="sign">热爱学习，学习使我快乐；热爱生活，生活充满激情。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Tabs -->
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-layout__tab-userbar">
+      <a href="javascript:void(0);" class="mdl-layout__tab is-active">我的信息</a>        <!-- href="#user_panel_myinfo" -->
+      <a href="" class="mdl-layout__tab">我的发布</a>                                     <!-- href="#user_panel_myrelease" -->
+      <a href="" class="mdl-layout__tab">我的收藏</a>                                     <!-- href="#user_panel_mylike" -->
+      <a href="user_chat.html" class="mdl-layout__tab">消息</a>                           <!-- href="#user_panel_chat" -->
+      <a href="" class="mdl-layout__tab">认证</a>                                         <!-- href="#user_panel_attest" -->
+      <a href="" class="mdl-layout__tab">设置</a>                                         <!-- href="#user_panel_setting" -->
+    </div>
+    <!--<div class="entrance">
+      <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp home-button" href="release.html">
+        <i class="material-icons">add</i>
+      </a>
+    </div> -->
+    <div class="mdl-layout__header--userbg mainuser_bg"><!-- <img src="../static/images/banner/banner1.jpg" alt=""> --></div>
+    <div class="mdl-js-button mdl-js-ripple-effect mdl-layout__drawer-button menu-button po-fi">
+      <i class="material-icons">menu</i>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer po-fi">    <!--Left slip-->
+    <div class="userCenter">
+      <div class="info">
+        <div class="userImg"><a href="javascript:void(0);"><img src="../static/images/user.jpg" alt=""></a></div>
+        <p class="userName">ZHAO-Shaofeng</p>
+        <p class="userEmail">bem.zhao@gmail.com</p>
+        <button id="userOperate" class="mdl-button mdl-js-button mdl-button--icon userOperate">
+          <i class="material-icons">arrow_drop_down</i>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect userOperate-ul" for="userOperate">
+          <li class="mdl-menu__item"><a href="javascript:void(0);"></a>退出登录</li>
+        </ul>
+      </div>
+      <img src="../static/images/material/banner17.png" alt="" class="user_bg_img">
+    </div>
+    <div class="nav_drawer">
+      <nav class="mdl-navigation">
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href="index.html"><i class="material-icons">home</i>首页</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">shopping_cart</i>我的发布</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">star</i>我的收藏</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href="user_chat.html"><i class="material-icons">forum</i>消息</a>
+        <div class="mdl-navigation__link-line"></div>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">fingerprint</i>认证</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">settings</i>设置</a>
+      </nav>
+    </div>
+  </div>
+  <main class="mdl-layout__content usermain_content">
+    <section class="mdl-layout__tab-panel is-active" id="user_panel_myinfo">
+      <div class="page-content"><!-- Your user_panel_myinfo goes here -->
+        <div class="container user_container">
+          <div class="mdl-grid">
+            <div class="mdl-card mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-shadow--2dp mdl-cell--top myProfile-card">
+              <div class="card-header">
+                <h5><i class="material-icons">contacts</i><span>联系方式</span></h5>
+                <button id="myProfile-menu1" class="mdl-button mdl-js-button mdl-button--icon myProfile-menu">
+                  <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="myProfile-menu1">
+                  <li class="mdl-menu__item">修改</li>
+                </ul>
+              </div><!--card-header end-->
+              <div class="card-body">
+                <p>
+                  <label>Q Q：</label>
+                  <span>820731799</span>
+                </p>
+                <p>
+                  <label>手机：</label>
+                  <span>18129865526</span>
+                </p>
+                <p>
+                  <label>邮箱：</label>
+                  <span>820731799@qq.com</span>
+                </p>
+              </div><!--card-body end-->
+            </div><!--mdl-6-col end-->
+            <div class="mdl-card mdl-cell mdl-cell--6-col-desktop mdl-cell--4-col-tablet mdl-shadow--2dp mdl-cell--top myProfile-card">
+              <div class="card-header">
+                <h5><i class="material-icons">assignment</i><span>基本信息</span></h5>
+                <button id="myProfile-menu2" class="mdl-button mdl-js-button mdl-button--icon myProfile-menu">
+                  <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="myProfile-menu2">
+                  <li class="mdl-menu__item">修改</li>
+                </ul>
+              </div><!--card-header end-->
+              <div class="card-body">
+                <p>
+                  <label>认证：</label>
+                  <span>已认证</span>
+                </p>
+                <p>
+                  <label>用户名：</label>
+                  <span>ZHAO-Shaofeng</span>
+                </p>
+                <p>
+                  <label>班级：</label>
+                  <span>13互联网G5-1</span>
+                </p>
+                <p>
+                  <label>宣言：</label>
+                  <span>热爱学习，学习使我快乐；热爱生活，生活充满激情。</span>
+                </p>
+              </div><!--card-body end-->
+            </div><!--mdl-6-col end-->
+          </div><!--mdl-grid end-->
+        </div><!--container end-->
+        <!-- <div style="height: 1000px;"></div> -->
+      </div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="user_panel_myrelease">
+      <div class="page-content"><!-- Your user_panel_myrelease goes here --></div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="user_panel_mylike">
+      <div class="page-content"><!-- Your user_panel_mylike goes here --></div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="user_panel_chat">
+      <div class="page-content"><!-- Your user_panel_chat goes here --></div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="user_panel_attest">
+      <div class="page-content"><!-- Your user_panel_attest goes here --></div>
+    </section>
+    <section class="mdl-layout__tab-panel" id="user_panel_setting">
+      <div class="page-content"><!-- Your user_panel_setting goes here --></div>
+    </section>
+    <footer id="footer">
+        Copyright &copy; 2017 breadem.com
+        
+        <ul class="f-menu">
+            <li><a href="#">发送反馈</a></li>
+            <li><a href="#">帮助</a></li>
+            <li><a href="#">联系我们</a></li>
+        </ul>
+    </footer>
+  </main>
+</div>
+
+
+<script th:src="@{/js/lib/jquery-1.11.3.min.js}"></script>
+<script th:src="@{/js/lib/material.min.js}"></script>
+<script th:src="@{/js/lib/mdl-selectfield.min.js}"></script>
+<script th:src="@{/js/lib/main.js}"></script>
+</body>
+</html>

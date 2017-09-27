@@ -1,6 +1,8 @@
 package com.bem.domain;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -9,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.bem.utils.Time;
 
 @Entity
@@ -101,11 +105,11 @@ public class Task {
 		this.release_time = release_time;
 	}
 
-	public String getList_img() {
-		return list_img;
+	public List<String> getList_img() {
+		return JSON.parseArray(list_img,String.class);
 	}
-	public void setList_img(String list_img) {
-		this.list_img = list_img;
+	public void setList_img(List<String> list_img) {
+		this.list_img = JSON.toJSONString(list_img);
 	}
 	public String getScope() {
 		return scope;
