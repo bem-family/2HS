@@ -90,16 +90,16 @@
           
           
           
-            <div th:each="nav:${nav}" class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-cell--stretch mdl-shadow--2dp card-hoverable portfolio-card">
+            <div th:each="item:${Mypage.items}" class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-cell--stretch mdl-shadow--2dp card-hoverable portfolio-card">
               <div class="mdl-card__media">
-                <a href="javascript:void(0);" class="mdl-js-button mdl-js-ripple-effect mdl-button--accent">
-                  <img class="article-image" src="../static/images/example2.jpg" alt="">
+                <a th:herf="@{/}" class="mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+                  <img class="article-image" th:src="@{${item.list_img[0]}}" alt="">
                 </a>
               </div>
               <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text">《Git版本控制管理》</h2>
+                <h2 class="mdl-card__title-text" th:text="${item.title}">《Git版本控制管理》</h2>
               </div>
-              <div class="mdl-card__supporting-text">教学楼415，git课专用，笔记全有，妈妈再也不用担心我挂科</div>
+              <div class="mdl-card__supporting-text" th:text="${item.content}">教学楼415，git课专用，笔记全有，妈妈再也不用担心我挂科</div>
               <div class="mdl-card__actions mdl-card--border">
                 <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--sm" href="javascript:void(0);">更多</a>
               </div>
@@ -111,20 +111,8 @@
                 <li class="mdl-button mdl-js-button mdl-js-ripple-effect" disabled>
                   <a href="javascript:void(0);"><i class="material-icons">keyboard_arrow_left</i></a>
                 </li>
-                <li class="mdl-button mdl-js-button mdl-js-ripple-effect active">
-                  <a href="#">1</a>
-                </li>
-                <li class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                  <a href="#">2</a>
-                </li>
-                <li class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                  <a href="#">3</a>
-                </li>
-                <li class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                  <a href="#">4</a>
-                </li>
-                <li class="mdl-button mdl-js-button mdl-js-ripple-effect">
-                  <a href="#">5</a>
+                <li th:each="page:${Mypage.pages}" class="mdl-button mdl-js-button mdl-js-ripple-effect active">
+                  <a href="#" th:text="${page}">1</a>
                 </li>
                 <li class="mdl-button mdl-js-button mdl-js-ripple-effect">
                   <a href="javascript:void(0);">

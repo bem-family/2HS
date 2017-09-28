@@ -138,9 +138,9 @@
         </div>
       </div><!--form_body end-->
       <div class="full">
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect pull-right form_submit" id="submit" type="submit">
+        <div class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect pull-right form_submit" id="submit" >
           马上发布
-        </button>
+        </div>
       </div>
     </form>
   </div>
@@ -174,6 +174,7 @@
       maxFilesize: 5,
       maxThumbnailFilesize:5,
       autoProcessQueue:false,
+      acceptedFiles:".jpg,.png",
       addRemoveLinks: true,
       uploadMultiple:true,
       init: function() {
@@ -181,6 +182,7 @@
       	var myDropzone = this;
           this.on("success", function(file) {
               console.log("File uploaded");
+             
           });
           this.on("removedfile", function(file) {
               console.log("File " + file.name + "removed");
@@ -199,9 +201,8 @@
           
           
           
-          $("#test").on("click",function(){
+          $("#submit").on("click",function(){
         	  myDropzone.processQueue();
-            
            });
           
       }

@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 import com.bem.utils.MyPage;
 
 
-public class BaseDao<T> {
+public class BaseReponsitory<T> {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @PersistenceContext

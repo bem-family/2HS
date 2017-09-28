@@ -39,17 +39,20 @@ import com.bem.domain.Task;
 import com.bem.domain.TaskDto;
 import com.bem.domain.User;
 import com.bem.domain.User.ROLE;
+import com.bem.repository.TaskRepository;
 import com.bem.service.ClassifyService;
 import com.bem.service.QuizService;
 import com.bem.service.TaskService;
 import com.bem.service.UserService;
+import com.bem.utils.MyPage;
 
 @Controller
 public class IndexController extends BaseController{
 
 	@Resource
 	private TaskService taskService;
-	
+	@Resource
+	private TaskRepository taskRepository;
 	@Resource
 	private QuizService quizService;
 	
@@ -62,9 +65,9 @@ public class IndexController extends BaseController{
 	@RequestMapping("/")
 	public String index(Model model){
 		User user = getCurrentUser();
-		List<Task> mlist = taskService.findAll();
+		MyPage<Task> Mypage = taskRepository.findByPageTask();
 		List<Classify> clist = classifyService.findAllClassify();
-		model.addAttribute("list", mlist);
+		model.addAttribute("Mypage", Mypage);
 		model.addAttribute("clist", clist);
 		return "index2";
 	}

@@ -3,6 +3,7 @@ package com.bem.repository;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -11,16 +12,19 @@ import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.stereotype.Component;
 
 import com.bem.domain.Task;
+import com.bem.utils.MyPage;
 
 @Component
 @Transactional
-public class TaskRepository {
+public class TaskRepository extends BaseReponsitory<Task> {
 	
 	@PersistenceContext
 	private EntityManager entityManager;
+	
 	
 	public Session getSession() {
 		return entityManager.unwrap(Session.class);
@@ -49,6 +53,10 @@ public class TaskRepository {
 		return mlist;
 	}
 	
+	public MyPage<Task> findByPageTask(){
+		DetachedCriteria dc = DetachedCriteria.forClass(Task.class);
+		return findPageByCriteria(dc);
+	}
 	
 	public boolean delete(String id){
 		Task task = findId(id);
