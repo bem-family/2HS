@@ -180,28 +180,21 @@
     	  
       	var myDropzone = this;
           this.on("success", function(file) {
-              console.log("File " + file.name + "uploaded");
+              console.log("File uploaded");
           });
           this.on("removedfile", function(file) {
               console.log("File " + file.name + "removed");
           });
-          
-          this.on("sending",function(file,xhr,formData){
-       	  	/* 	console.log(file);
-       	  	console.log("-1");
-	        	  formData.append('title',$("#res_name").val());
-	        	  formData.append('content',$("#res_description").val());
-	        	  formData.append('address',$("#res_place").val());
-	        	  formData.append('qq',$("#res_way").val());
-	        	  formData.append('classify',$("#res_classify").val()); */
-        	  
-          });
           this.on("processing",function(file){
         	 console.log(file); 
-        	 console.log("---------------------------");
+        	 console.log("-------------processing--------------");
           });
-          this.on("processingmultiple",function(file){
-        	  console.log(file);
+          this.on("sendingmultiple",function(file,xhr,formData){
+        	  formData.append('title',$("#res_name").val());
+        	  formData.append('content',$("#res_description").val());
+        	  formData.append('address',$("#res_place").val());
+        	  formData.append('qq',$("#res_way").val());
+        	  formData.append('classify',$("#res_classify").val());
           })
           
           

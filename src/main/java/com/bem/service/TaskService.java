@@ -10,6 +10,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.apache.coyote.http11.filters.VoidInputFilter;
+import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -60,13 +61,9 @@ public class TaskService {
 		Task task = new Task();
 		ArrayList<String> list = new ArrayList();
 		BeanUtils.copyProperties(taskDto,task);
-		if(request.getFileNames().hasNext()){
-			System.err.println(request.getFileMap());
-			System.err.println(request.getFileNames());
-			String FileName = request.getFileNames().next();
-			MultipartFile file  = request.getFile(FileName);
+		for (MultipartFile file : request.getFileMap().values()) {
 			save(file,list);
-		};
+		}
 		task.setList_img(list);
 		taskRepository.save(task);
 	}

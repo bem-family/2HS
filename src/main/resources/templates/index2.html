@@ -87,7 +87,10 @@
       <div class="page-content"><!-- Your scroll-tab-1 goes here -->
         <div class="container">
           <div class="mdl-grid">
-            <div class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-cell--stretch mdl-shadow--2dp card-hoverable portfolio-card">
+          
+          
+          
+            <div th:each="nav:${nav}" class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-cell--stretch mdl-shadow--2dp card-hoverable portfolio-card">
               <div class="mdl-card__media">
                 <a href="javascript:void(0);" class="mdl-js-button mdl-js-ripple-effect mdl-button--accent">
                   <img class="article-image" src="../static/images/example2.jpg" alt="">
@@ -101,62 +104,7 @@
                 <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--sm" href="javascript:void(0);">更多</a>
               </div>
             </div>
-            <div class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-cell--stretch mdl-shadow--2dp card-hoverable portfolio-card">
-              <div class="mdl-card__media">
-                <a href="javascript:void(0);" class="mdl-js-button mdl-js-ripple-effect mdl-button--accent">
-                  <img class="article-image" src="../static/images/example3.jpg" alt="">
-                </a>
-              </div>
-              <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text">模具专用两把刷</h2>
-              </div>
-              <div class="mdl-card__supporting-text">设计楼***上课用，大小刷各一把，需要的联系我</div>
-              <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--sm" href="javascript:void(0);">更多</a>
-              </div>
-            </div>
-            <div class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-cell--stretch mdl-shadow--2dp card-hoverable portfolio-card">
-              <div class="mdl-card__media">
-                <a href="javascript:void(0);" class="mdl-js-button mdl-js-ripple-effect mdl-button--accent">
-                  <img class="article-image" src="../static/images/example4.jpg" alt="">
-                </a>
-              </div>
-              <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text">篮球四个</h2>
-              </div>
-              <div class="mdl-card__supporting-text">本人手残，近3个月无法碰球，有需要的兄弟，K5***随时欢迎</div>
-              <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--sm" href="javascript:void(0);">更多</a>
-              </div>
-            </div>
-            <div class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-cell--stretch mdl-shadow--2dp card-hoverable portfolio-card">
-              <div class="mdl-card__media">
-                <a href="javascript:void(0);" class="mdl-js-button mdl-js-ripple-effect mdl-button--accent">
-                  <img class="article-image" src="../static/images/example2.jpg" alt="">
-                </a>
-              </div>
-              <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text">《Git版本控制管理》</h2>
-              </div>
-              <div class="mdl-card__supporting-text">教学楼415，git课专用，笔记全有，妈妈再也不用担心我挂科</div>
-              <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--sm" href="javascript:void(0);">更多</a>
-              </div>
-            </div>
-            <div class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-cell--stretch mdl-shadow--2dp card-hoverable portfolio-card">
-              <div class="mdl-card__media">
-                <a href="javascript:void(0);" class="mdl-js-button mdl-js-ripple-effect mdl-button--accent">
-                  <img class="article-image" src="../static/images/example1.jpg" alt="">
-                </a>
-              </div>
-              <div class="mdl-card__title">
-                <h2 class="mdl-card__title-text">纯白衬衫一件</h2>
-              </div>
-              <div class="mdl-card__supporting-text">适用于正装出席的场合，男生175高120斤左右刚好，需要的联系</div>
-              <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--sm" href="javascript:void(0);">更多</a>
-              </div>
-            </div>
+            
 
             <div class="mdl-cell mdl-cell--12-col">
               <ul class="pagination">

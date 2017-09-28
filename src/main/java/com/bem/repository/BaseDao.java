@@ -1,4 +1,4 @@
-package com.bem.domain;
+package com.bem.repository;
 
 import java.util.List;
 
