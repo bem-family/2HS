@@ -11,6 +11,7 @@ import com.bem.domain.Classify;
 import com.bem.domain.ClassifyDto;
 import com.bem.domain.Task;
 import com.bem.repository.ClassifyRepository;
+import com.bem.utils.MyPage;
 
 @Component
 public class ClassifyService {
@@ -28,7 +29,4 @@ public class ClassifyService {
 		classifyRepository.save(classify);
 	}
 	
-	public List<Task> findOneClassify(String classifyId){
-		return classifyRepository.findOneClassify(classifyId);
-	}
 }

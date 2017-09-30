@@ -47,5 +47,11 @@ public class Classify {
 	public void setTask(List<Task> task) {
 		this.task = task;
 	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
 
 }

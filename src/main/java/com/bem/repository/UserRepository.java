@@ -13,10 +13,11 @@ import org.springframework.stereotype.Component;
 
 import com.bem.domain.LocalAuth;
 import com.bem.domain.User;
+import com.fasterxml.jackson.databind.deser.Deserializers.Base;
 
 @Component
 @Transactional
-public class UserRepository {
+public class UserRepository{
 	@PersistenceContext
 	private EntityManager entityManager;	//实体管理器
 	

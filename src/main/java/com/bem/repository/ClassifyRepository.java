@@ -40,17 +40,7 @@ public class ClassifyRepository {
 		return criteria.list();
 	}
 	
-	/**
-	 * 查一个分类下的内容
-	 * @param classifyId
-	 * @return
-	 */
-	public List<Task> findOneClassify(String classifyId) {
-		DetachedCriteria dc = DetachedCriteria.forClass(Task.class);
-		dc.add(Restrictions.eq("classify.id", classifyId));
-		Criteria criteria = dc.getExecutableCriteria(getSession());
-		return criteria.list();
-	}
+	
 	
 	/**
 	 * 查一个分类对象

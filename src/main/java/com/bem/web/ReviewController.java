@@ -38,7 +38,7 @@ public class ReviewController extends BaseController{
 		model.addAttribute("user",user);
 		model.addAttribute("list",list);
 		model.addAttribute("task",task);
-		return "review";
+		return "commodity";
 	}
 	
 	@ResponseBody
@@ -46,7 +46,7 @@ public class ReviewController extends BaseController{
 	public String delete(@PathVariable String id){
 		reviewService.delete(id);
 		return "true";
-}
+	}
 	
 	
 	@ResponseBody
@@ -57,5 +57,7 @@ public class ReviewController extends BaseController{
 		reviewService.add(review);
 		return "true";
 	}
+	
+	
 	
 }

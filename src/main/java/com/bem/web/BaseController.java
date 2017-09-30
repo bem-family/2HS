@@ -24,6 +24,7 @@ public abstract class BaseController {
 			return null;
 		}
 		return userService.findUserByAccount(getCurrentUsername()).getUser();
+		
 	}
 
 }

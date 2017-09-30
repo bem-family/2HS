@@ -5,9 +5,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<div th:each="classifications : ${klist}">
+<div th:each="item: ${list}">
 			<ul>
-			<li><a th:text="${classifications.title}"></a></li>
+			<li><a th:text="${item.title}"></a></li>
 			</ul>
 			</div>
 </body>

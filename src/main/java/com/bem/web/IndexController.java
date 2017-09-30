@@ -72,17 +72,11 @@ public class IndexController extends BaseController{
 		return "index2";
 	}
 	
-	/*	@GetMapping("/classify/{id}/findDetails")
-		public String findOneClassification(Model model ,@PathVariable String id){
-			List<Task> klist = taskService.findOneClassification(id);
-			model.addAttribute("klist", klist);
-			return "details";
-		}*/
-		
-	
 	
 	@GetMapping("/release")
-	public String Release(){
+	public String Release(Model model){
+		List<Classify> mlist = classifyService.findAllClassify();
+		model.addAttribute("mlist",mlist);
 		return "release";
 	}
 	
@@ -97,25 +91,16 @@ public class IndexController extends BaseController{
 		return "new";
 	}
 	
-	//新增一条首页信息
 
-	/*@PostMapping("/taskCreate")
-	public String addTask(TaskDto taskCreateForm) {
-		//taskService.save(getCurrentUser().getId(),taskCreateForm);
-		return "redirect:/";
-	}*/
+
+	
 	@PostMapping("/upload")
 	public String add(MultipartHttpServletRequest request,TaskDto taskDto) {
 		taskService.save(request,taskDto);
 		return "redirect:/";
 	}
 	
-	/*@PostMapping("/taskCreate")
-	public String addTask(MultipartHttpServletRequest request,TaskDto taskCreateForm) {
-		System.err.println(request.getFileNames());
-		taskService.save(request);
-		return "redirect:/";
-	}*/
+
 	
 	@GetMapping("/deleteTask/{id}")
 	public String deleteTask(@PathVariable String id){
@@ -154,8 +139,8 @@ public class IndexController extends BaseController{
 		}
 		String json = JSON.toJSONString(status);  
 		return json;
-		
 	}
+	
 	
 	//认证问题
 	@PostMapping("/getQuizs")

@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.bem.domain.ClassifyDto;
 import com.bem.domain.Task;
+import com.bem.repository.TaskRepository;
 import com.bem.service.ClassifyService;
+import com.bem.utils.MyPage;
 
 @Controller
 public class ClassifyController extends BaseController{
 	
 	@Resource
 	private ClassifyService classifyService;
+	@Resource
+	private TaskRepository taskRepository;
 
 	/**
 	 * 查询分类下的内容
@@ -26,11 +30,12 @@ public class ClassifyController extends BaseController{
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/classify/{id}/findDetails")
-	public String findOneClassify(Model model ,@PathVariable String id){
-		List<Task> list = classifyService.findOneClassify(id);
-		model.addAttribute("list", list);
-		return "details";
+	@GetMapping("/classify/{classifyId}/findDetails")
+	public String findOneClassify(Model model ,@PathVariable String classifyId){
+		MyPage<Task> pages = taskRepository.findOneClassify(classifyId);
+		model.addAttribute("pages",pages);
+		return "index2";
+		
 	}
 	
 	/**
