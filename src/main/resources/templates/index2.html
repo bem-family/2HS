@@ -41,11 +41,11 @@
     </div>
     <!-- Tabs -->
     <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
-      <a href="#scroll-tab-1" class="mdl-layout__tab is-active">全部</a>
-      <a href="#scroll-tab-2" th:each="classify : ${clist}" class="mdl-layout__tab" th:href="@{'/classify/' + ${classify.id} +'/findDetails'" th:text="${classify.name}">分类 1</a>
+      <a href="/" class="mdl-layout__tab is-active">全部</a>
+      <a href="#scroll-tab-2" th:each="classify : ${clist}" class="mdl-layout__tab" th:href="@{'/classify/' + ${classify.id} }" th:text="${classify.name}">分类 1</a>
     </div>
     <div class="entrance">
-      <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp home-button" href="release">
+      <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp home-button" href="/release">
         <i class="material-icons">add</i>
       </a>
     </div>
@@ -72,13 +72,13 @@
     </div>
     <div class="nav_drawer">
       <nav class="mdl-navigation">
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link active" href=""><i class="material-icons">home</i>首页</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link active" th:href="@{/}"><i class="material-icons">home</i>首页</a>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/myrelease}"><i class="material-icons">shopping_cart</i>我的发布</a>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/user}"><i class="material-icons">forum</i>消息</a>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/mycollect}"><i class="material-icons">star</i>我的收藏</a>
         <div class="mdl-navigation__link-line"></div>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/user}"><i class="material-icons">person</i>个人中心</a>
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">settings</i>设置</a>
+        <!-- <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">settings</i>设置</a> -->
       </nav>
     </div>
   </div>
@@ -88,10 +88,9 @@
         <div class="container">
           <div class="mdl-grid">
           
-          
-          
-            <div th:if="${Mypage.items != null}" th:each="item:${Mypage.items}" class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-cell--stretch mdl-shadow--2dp card-hoverable portfolio-card">
-              <div class="mdl-card__media">
+          <!-- ${Mypage.totalcount} != null ? -->
+            <div  th:each="item:${Mypage.items}" class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-cell--stretch mdl-shadow--2dp card-hoverable portfolio-card">
+              <div class="mdl-card__media" >
                 <a th:herf="@{/}" class="mdl-js-button mdl-js-ripple-effect mdl-button--accent">
                   <img class="article-image" th:src="@{${item.list_img[0]}}" alt="">
                 </a>
@@ -103,8 +102,7 @@
               <div class="mdl-card__actions mdl-card--border">
                 <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--sm" th:href="@{'/task_detail/'+${item.id}}">更多</a>
               </div>
-            </div>
-            
+            </div>	
 
             <div class="mdl-cell mdl-cell--12-col">
               <ul class="pagination">

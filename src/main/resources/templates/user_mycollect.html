@@ -41,21 +41,21 @@
         <div class="flexshow">
           <div class="userhead"><img src="../static/images/user.jpg" alt=""></div>
           <div class="userinfo">
-            <h3 class="name">ZHAO-Shaofeng</h3>
-            <p class="email">bem.zhao@gmail.com</p>
-            <p class="sign">热爱学习，学习使我快乐；热爱生活，生活充满激情。</p>
+           <h3 class="name" th:text="${user.name}">ZHAO-Shaofeng</h3>
+            <p class="email" th:text="${user.email}">bem.zhao@gmail.com</p>
+            <p class="sign"  th:text="${user.signature}">热爱学习，学习使我快乐；热爱生活，生活充满激情。</p>
           </div>
         </div>
       </div>
     </div>
     <!-- Tabs -->
     <div class="mdl-layout__tab-bar mdl-js-ripple-effect mdl-layout__tab-userbar">
-      <a th:href="@{/user}" class="mdl-layout__tab is-active">我的信息</a>        <!-- href="#user_panel_myinfo" -->
+      <a th:href="@{/user}" class="mdl-layout__tab ">我的信息</a>        <!-- href="#user_panel_myinfo" -->
       <a th:href="@{/myrelease}" class="mdl-layout__tab">我的发布</a>                                     <!-- href="#user_panel_myrelease" -->
-      <a th:href="@{/mycollect}" class="mdl-layout__tab">我的收藏</a>                                     <!-- href="#user_panel_mylike" -->
+      <a th:href="@{/mycollect}" class="mdl-layout__tab is-active">我的收藏</a>                                     <!-- href="#user_panel_mylike" -->
       <!-- <a th:href="@{/}" class="mdl-layout__tab">消息</a>  -->                          <!-- href="#user_panel_chat" -->
       <a th:href="@{/}" class="mdl-layout__tab">认证</a>                                         <!-- href="#user_panel_attest" -->
-      <a th:href="@{/}" class="mdl-layout__tab">设置</a>                                         <!-- href="#user_panel_setting" -->
+      <!-- <a th:href="@{/}" class="mdl-layout__tab">设置</a> -->                                         <!-- href="#user_panel_setting" -->
     </div>
     <!--<div class="entrance">
       <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp home-button" href="release.html">
@@ -84,13 +84,13 @@
     </div>
     <div class="nav_drawer">
       <nav class="mdl-navigation">
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link active" href=""><i class="material-icons">home</i>首页</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link active" th:href="@{/}"><i class="material-icons">home</i>首页</a>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/myrelease}"><i class="material-icons">shopping_cart</i>我的发布</a>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/user}"><i class="material-icons">forum</i>消息</a>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/mycollect}"><i class="material-icons">star</i>我的收藏</a>
         <div class="mdl-navigation__link-line"></div>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/user}"><i class="material-icons">person</i>个人中心</a>
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">settings</i>设置</a>
+        <!-- <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">settings</i>设置</a> -->
       </nav>
     </div>
   </div>
@@ -118,19 +118,35 @@
             <div class="mdl-card mdl-cell mdl-cell--12-col mdl-shadow--2dp mdl-cell--top user-card">
               <ul class="user_chat_list-main user_cargo_list-main">
                 
-                <li class="list-item">
+                <li class="list-item" th:each="item:${pages.items}">
                   <a href="">
-                    <div class="list-item-avatar"><img src="../static/images/example1.jpg" alt=""></div>
+                    <div class="list-item-avatar"><img th:src="@{/}" alt=""></div>
                     <div class="list-item-content">
-                      <p class="item-title">Bob Odenkirk</p>
-                      <p class="item-sub-title">聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容</p>
+                      <p class="item-title" th:text="${item.title}">Bob Odenkirk</p>
+                      <p class="item-sub-title" th:text="${item.content}">聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容聊天内容</p>
                     </div>
                     <span class="secondary-content">
-                      <span class="secondary-info">15:27</span>
+                      <span class="secondary-info" th:text="${item.release_time}">15:27</span>
                     </span>
                   </a>
                 </li>
-
+					
+				<div class="mdl-cell mdl-cell--12-col">
+	              <ul class="pagination">
+	                <li class="mdl-button mdl-js-button mdl-js-ripple-effect" disabled>
+	                  <a href="javascript:void(0);"><i class="material-icons">keyboard_arrow_left</i></a>
+	                </li>
+	                <li th:each="page:${pages.pages}" class="mdl-button mdl-js-button mdl-js-ripple-effect active">
+	                  <a href="#" th:text="${page}">1</a>
+	                </li>
+	                <li class="mdl-button mdl-js-button mdl-js-ripple-effect">
+	                  <a href="javascript:void(0);">
+	                    <i class="material-icons">keyboard_arrow_right</i>
+	                  </a>
+	                </li>
+	              </ul>
+	            </div>
+	            
               </ul>
             </div>
           </div><!--mdl-grid end-->

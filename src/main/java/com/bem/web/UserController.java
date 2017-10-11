@@ -23,9 +23,8 @@ public class UserController extends BaseController {
 	private TaskRepository taskRepository;
 	
 	@RequestMapping("/user")
-	public String user(String userId,Model model){
-		//User user = userRepository.findUserByUserId(userId);
-		//model.addAttribute("user",user);
+	public String user(Model model){
+		model.addAttribute("user",getCurrentUser());
 		return "user";
 	}
 	
@@ -35,14 +34,16 @@ public class UserController extends BaseController {
 	}
 	
 	@RequestMapping("/myrelease")
-	public String release(String userId,Model model){
-		MyPage<Task> pages = taskRepository.findByPageId(userId);
+	public String release(Model model){
+		MyPage<Task> pages = taskRepository.findByPageId(getCurrentUser().getId());
+		model.addAttribute("user",getCurrentUser());
 		model.addAttribute("pages",pages);
 		return "user_myrelease";
 	}
 	@RequestMapping("/mycollect")
 	public String collect(Model model){
 		MyPage<Task> pages = taskRepository.findByPageId(getCurrentUser().getId());
+		model.addAttribute("user",getCurrentUser());
 		model.addAttribute("pages",pages);
 		return "user_mycollect";
 	}

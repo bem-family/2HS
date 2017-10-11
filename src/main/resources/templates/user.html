@@ -41,9 +41,9 @@
         <div class="flexshow">
           <div class="userhead"><img src="../static/images/user.jpg" alt=""></div>
           <div class="userinfo">
-            <h3 class="name">ZHAO-Shaofeng</h3>
-            <p class="email">bem.zhao@gmail.com</p>
-            <p class="sign">热爱学习，学习使我快乐；热爱生活，生活充满激情。</p>
+             <h3 class="name" th:text="${user.name}">ZHAO-Shaofeng</h3>
+            <p class="email" th:text="${user.email}">bem.zhao@gmail.com</p>
+            <p class="sign"  th:text="${user.signature}">热爱学习，学习使我快乐；热爱生活，生活充满激情。</p>
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@
       <a th:href="@{/mycollect}" class="mdl-layout__tab">我的收藏</a>                                     <!-- href="#user_panel_mylike" -->
       <!-- <a th:href="@{/}" class="mdl-layout__tab">消息</a>  -->                          <!-- href="#user_panel_chat" -->
       <a th:href="@{/}" class="mdl-layout__tab">认证</a>                                         <!-- href="#user_panel_attest" -->
-      <a th:href="@{/}" class="mdl-layout__tab">设置</a>                                         <!-- href="#user_panel_setting" -->
+      <!-- <a th:href="@{/}" class="mdl-layout__tab">设置</a>  -->                                        <!-- href="#user_panel_setting" -->
     </div>
     <!--<div class="entrance">
       <a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp home-button" href="release.html">
@@ -84,13 +84,13 @@
     </div>
     <div class="nav_drawer">
       <nav class="mdl-navigation">
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link active" href=""><i class="material-icons">home</i>首页</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link active" th:href="@{/}"><i class="material-icons">home</i>首页</a>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/myrelease}"><i class="material-icons">shopping_cart</i>我的发布</a>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/user}"><i class="material-icons">forum</i>消息</a>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/mycollect}"><i class="material-icons">star</i>我的收藏</a>
         <div class="mdl-navigation__link-line"></div>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/user}"><i class="material-icons">person</i>个人中心</a>
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">settings</i>设置</a>
+        <!-- <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">settings</i>设置</a> -->
       </nav>
     </div>
   </div>
@@ -112,15 +112,15 @@
               <div class="card-body">
                 <p>
                   <label>Q Q：</label>
-                  <span>820731799</span>
+                  <span th:text="${user.qq}">820731799</span>
                 </p>
                 <p>
                   <label>手机：</label>
-                  <span>18129865526</span>
+                  <span th:text="${user.phone}">18129865526</span>
                 </p>
                 <p>
                   <label>邮箱：</label>
-                  <span>820731799@qq.com</span>
+                  <span th:text="${user.email}">820731799@qq.com</span>
                 </p>
               </div><!--card-body end-->
             </div><!--mdl-6-col end-->
@@ -141,15 +141,15 @@
                 </p>
                 <p>
                   <label>用户名：</label>
-                  <span>ZHAO-Shaofeng</span>
+                  <span th:text="${user.name}">ZHAO-Shaofeng</span>
                 </p>
-                <p>
+               <!--  <p>
                   <label>班级：</label>
-                  <span>13互联网G5-1</span>
-                </p>
+                  <span th:text="${user.signature}">13互联网G5-1</span>
+                </p> -->
                 <p>
                   <label>宣言：</label>
-                  <span>热爱学习，学习使我快乐；热爱生活，生活充满激情。</span>
+                  <span th:text="${user.signature}">热爱学习，学习使我快乐；热爱生活，生活充满激情。</span>
                 </p>
               </div><!--card-body end-->
             </div><!--mdl-6-col end-->

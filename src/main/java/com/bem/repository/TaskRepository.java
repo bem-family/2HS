@@ -30,22 +30,25 @@ public class TaskRepository extends BaseRepository<Task> {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
-	
-	public Session getSession() {
-		return entityManager.unwrap(Session.class);
-	}
-	
 	/**
 	 * 查找所有Task
 	 * @return  MyPage<Task>
 	 */
 	public List<Task> findAll(){
-		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Task> query = builder.createQuery(Task.class);
-		Root<Task> root  = query.from(Task.class);
-		query.select(root);
-		List<Task> mlist = entityManager.createQuery(query).getResultList();
-		return mlist;
+		log.debug("find All Task");
+		try {
+			CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<Task> query = builder.createQuery(Task.class);
+			Root<Task> root  = query.from(Task.class);
+			query.select(root);
+			List<Task> mlist = entityManager.createQuery(query).getResultList();
+			log.debug("find All Task successfull");
+			return mlist;
+		} catch (RuntimeException e) {
+			log.error("find All Task error",e);
+			throw e;
+		}
+		
 	}
 	
 	/**
@@ -53,9 +56,17 @@ public class TaskRepository extends BaseRepository<Task> {
 	 * @return  MyPage<Task>
 	 */
 	public MyPage<Task> findByPageTask(){
-		DetachedCriteria dc = DetachedCriteria.forClass(Task.class);
-		dc.addOrder(Order.desc("release_time"));
-		return findPageByCriteria(dc);
+		log.debug("find All Task desc release_time");
+		try {
+			DetachedCriteria dc = DetachedCriteria.forClass(Task.class);
+			dc.addOrder(Order.desc("release_time"));
+			log.debug("find All Task desc release_time successfull");
+			return findPageByCriteria(dc);
+		} catch (RuntimeException e) {
+			log.error("find All Task desc release_time error",e);
+			throw e;
+		}
+		
 	}
 	
 	/**
@@ -64,9 +75,16 @@ public class TaskRepository extends BaseRepository<Task> {
 	 * @return MyPage<Task>
 	 */
 	public MyPage<Task> findByPageId(String userId){
-		DetachedCriteria dc = DetachedCriteria.forClass(Task.class);
-		dc.add(Property.forName("user_id").eq(userId));
-		return findPageByCriteria(dc);
+		log.debug("find  MyPage<Task> By userID");
+		try {
+			DetachedCriteria dc = DetachedCriteria.forClass(Task.class);
+			dc.add(Property.forName("user_id").eq(userId));
+			log.debug("find  MyPage<Task> By userID successfull");
+			return findPageByCriteria(dc);
+		} catch (RuntimeException e) {
+			log.error("find  MyPage<Task> By userID error",e);
+			throw e;
+		}
 	}
 	
 	
@@ -76,10 +94,17 @@ public class TaskRepository extends BaseRepository<Task> {
 	 * @return	MyPage<Task>
 	 */
 	public MyPage<Task> findByPageClassify(String classify){
-		DetachedCriteria dc = DetachedCriteria.forClass(Task.class);
-		dc.add(Restrictions.eq("classify.id", classify));
-		dc.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
-		return findPageByCriteria(dc);
+		log.debug("find  MyPage<Task> By classifyID");
+		try {
+			DetachedCriteria dc = DetachedCriteria.forClass(Task.class);
+			dc.add(Restrictions.eq("classify.id", classify));
+			dc.setResultTransformer(CriteriaSpecification.DISTINCT_ROOT_ENTITY);
+			log.debug("find  MyPage<Task> By classifyID successfull");
+			return findPageByCriteria(dc);
+		} catch (RuntimeException e) {
+			log.error("find  MyPage<Task> By classifyID error",e);
+			throw e;
+		}
 	}
 	
 	
@@ -89,9 +114,17 @@ public class TaskRepository extends BaseRepository<Task> {
 	 * @return
 	 */
 	public MyPage<Task> findOneClassify(String classifyId) {
-		DetachedCriteria dc = DetachedCriteria.forClass(Task.class);
-		dc.add(Restrictions.eq("classify.id", classifyId));
-		return findPageByCriteria(dc);
+		log.debug("find Task By classifyID");
+		try {
+			DetachedCriteria dc = DetachedCriteria.forClass(Task.class);
+			dc.add(Restrictions.eq("classify.id", classifyId));
+			log.debug("find Task By classifyID successfull");
+			return findPageByCriteria(dc);
+		} catch (Exception e) {
+			log.error("find Task By classifyID error",e);
+			throw e;
+		}
+		
 	}
 	
 	/**
@@ -99,17 +132,31 @@ public class TaskRepository extends BaseRepository<Task> {
 	 * @return  Task
 	 */
 	public Task findId(String id){
-		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Task> query = builder.createQuery(Task.class);
-		Root<Task> root  = query.from(Task.class);
-		query.select(root);
-		query.where(builder.equal(root.get("id"), id));
-		Task task = entityManager.createQuery(query).getSingleResult();
-		return task;
+		log.debug("find Task By TaskID");
+		try {
+			CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<Task> query = builder.createQuery(Task.class);
+			Root<Task> root  = query.from(Task.class);
+			query.select(root);
+			query.where(builder.equal(root.get("id"), id));
+			Task task = entityManager.createQuery(query).getSingleResult();
+			log.debug("find Task By TaskID successfull");
+			return task;
+		} catch (RuntimeException e) {
+			log.error("find Task By TaskID error",e);
+			throw e;
+		}
+		
 	}
 	
 	public void save(Task task) {
-		getSession().save(task);
+		log.debug("save Task");
+		try {
+			getSession().save(task);
+		} catch (RuntimeException e) {
+			log.error("save Task error",e);
+			throw e;
+		}
 	}
 	/**
 	 * 删除一个Task，通过TaskID。（结果返回一个boolean值）
@@ -127,7 +174,13 @@ public class TaskRepository extends BaseRepository<Task> {
 	
 	
 	public void update(Task task){
-		getSession().update(task);
+		log.debug("update Task");
+		try {
+			getSession().update(task);
+		} catch (Exception e) {
+			log.error("update Task error",e);;
+			throw e;
+		}
 	}
 	
 }

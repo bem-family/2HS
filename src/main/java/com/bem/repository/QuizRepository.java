@@ -12,25 +12,29 @@ import javax.transaction.Transactional;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
+import com.bem.domain.Classify;
 import com.bem.domain.Quiz;
 
 
 @Component
 @Transactional
-public class QuizRepository {
+public class QuizRepository extends BaseRepository<Quiz>{
 	@PersistenceContext
 	private EntityManager entityManager;	//实体管理器
 	
-	public Session getSession(){
-		return entityManager.unwrap(Session.class);
-	}
-	
 	public List<Quiz> findAll(){
-		List<Quiz> list = getSession().createCriteria(Quiz.class).list();
-		return list;
+		log.debug("select List<Quiz>");
+		try {
+		DetachedCriteria dc = DetachedCriteria.forClass(Quiz.class);
+		return findAllByCriteria(dc);
+		} catch (RuntimeException e) {
+			log.error("select List<Quiz> error",e);
+			throw e;
+		}
 	}
 	
 	public List<Quiz> findByRodaom(){
@@ -43,13 +47,13 @@ public class QuizRepository {
 	}
 	
 	public Quiz findByQuestion(String qu){
-		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<Quiz> query = builder.createQuery(Quiz.class);
-		Root<Quiz> root  = query.from(Quiz.class);
-		query.select(root);
-		query.where(builder.equal(root.get("question"), qu));
-		Quiz Quiz = entityManager.createQuery(query).getSingleResult();
-		return Quiz;
+		log.debug("find Quiz By Question");
+		try {
+			return findById(qu, Quiz.class);
+		} catch (RuntimeException e) {
+			log.error("find Quiz By Question error",e);
+			throw e;
+		}
 	}
 	
 }

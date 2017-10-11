@@ -14,20 +14,22 @@ import org.springframework.stereotype.Component;
 import com.bem.domain.LocalAuth;
 import com.bem.domain.User;
 import com.fasterxml.jackson.databind.deser.Deserializers.Base;
+import com.mysql.jdbc.log.Log;
 
 @Component
 @Transactional
-public class UserRepository{
+public class UserRepository extends BaseRepository<User>{
 	@PersistenceContext
 	private EntityManager entityManager;	//实体管理器
 	
-	public Session getSession(){
-		return entityManager.unwrap(Session.class);
-	}
-	
 	//保存用户信息
 	public void SaveUser(User user){
-		getSession().save(user);
+		try {
+			getSession().save(user);
+		} catch (RuntimeException e) {
+			log.error("SaveUser error",e);
+			throw e;
+		}
 	}
 	
 	//保存账号信息
@@ -39,15 +41,27 @@ public class UserRepository{
 	
 	//修改用户信息
 	public void UpdateUser(User user){
-		getSession().update(user);
+		try {
+			getSession().update(user);
+		} catch (RuntimeException e) {
+			log.error("UpdateUser error",e);
+			throw e;
+		}
 	}
 	public User findUserByUserId(String userId){
-		CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-		CriteriaQuery<User> query  = builder.createQuery(User.class);
-		Root<User> root =query.from(User.class);
-		query.where(builder.equal(root.get("id"),(userId)));
-		User user = entityManager.createQuery(query).getSingleResult();
-		return user;
+		try {
+			CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+			CriteriaQuery<User> query  = builder.createQuery(User.class);
+			Root<User> root =query.from(User.class);
+			query.where(builder.equal(root.get("id"),(userId)));
+			User user = entityManager.createQuery(query).getSingleResult();
+			log.debug("findUserByUserId successfull");
+			return user;
+		} catch (RuntimeException e) {
+			log.error("findUserByUserId error",e);
+			throw e;
+		}
+		
 	}
 	public LocalAuth findUserByAccount(String account){
 		LocalAuth localAuth = new LocalAuth();
@@ -61,9 +75,11 @@ public class UserRepository{
 		    Predicate condition3 = builder.or(conditionForName,conditionForEmail,conditionForPhone);
 			query.where(condition3);
 			localAuth = entityManager.createQuery(query).getSingleResult();
+			log.debug("findUserByAccount successfull");
+			return localAuth;
 		}catch(Exception e){
+			log.error("findUserByAccount error",e);
 			return null;
 		}
-		return localAuth;
 	}	
 }

@@ -80,13 +80,13 @@
     </div>
     <div class="nav_drawer">
       <nav class="mdl-navigation">
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link active" href=""><i class="material-icons">home</i>首页</a>
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">shopping_cart</i>我的发布</a>
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">forum</i>消息</a>
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">star</i>我的收藏</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link active" th:href="@{/}"><i class="material-icons">home</i>首页</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/myrelease}"><i class="material-icons">shopping_cart</i>我的发布</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/user}"><i class="material-icons">forum</i>消息</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/mycollect}"><i class="material-icons">star</i>我的收藏</a>
         <div class="mdl-navigation__link-line"></div>
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">person</i>个人中心</a>
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">settings</i>设置</a>
+        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/user}"><i class="material-icons">person</i>个人中心</a>
+        <!-- <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" href=""><i class="material-icons">settings</i>设置</a> -->
       </nav>
     </div>
   </div>
@@ -128,7 +128,7 @@
         <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label full">
           <i class="material-icons icons">class</i>
           <select id="res_classify" name="classify"   class="mdl-selectfield__select">
-            <option th:each="item:${mlist}" value="option1">分类 1</option>
+            <option th:each="item:${mlist}" th:value="${item.id}" th:text="${item.name}">分类 1</option>
           </select>
           <div class="mdl-selectfield__icon pd0"><i class="material-icons">arrow_drop_down</i></div>
           <label class="mdl-selectfield__label" for="res_classify">选择分类</label>
@@ -178,8 +178,7 @@
     	  
       	var myDropzone = this;
           this.on("success", function(file) {
-              console.log("File uploaded");
-             
+        	  location.href="/";
           });
           this.on("removedfile", function(file) {
               console.log("File " + file.name + "removed");

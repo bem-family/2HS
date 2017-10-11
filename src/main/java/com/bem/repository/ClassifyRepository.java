@@ -17,17 +17,15 @@ import com.bem.domain.Task;
 
 @Component
 @Transactional
-public class ClassifyRepository {
+public class ClassifyRepository extends BaseRepository<Classify>{
 
-	@PersistenceContext
-	private EntityManager entityManager;
-	
-	public Session getSession() {
-		return entityManager.unwrap(Session.class);
-	}
-	
 	public void save(Classify classify) {
-		getSession().save(classify);
+		try {
+			getSession().save(classify);
+		} catch (RuntimeException e) {
+			log.error("save classify error");
+			throw e;
+		}
 	}
 	
 	/** 
@@ -35,9 +33,14 @@ public class ClassifyRepository {
 	 * @return
 	 */
 	public List<Classify> findAllClassify() {
+		log.debug("select List<Classify>");
+		try {
 		DetachedCriteria dc = DetachedCriteria.forClass(Classify.class);
-		Criteria criteria = dc.getExecutableCriteria(getSession());
-		return criteria.list();
+		return findAllByCriteria(dc);
+		} catch (RuntimeException e) {
+			log.error("select List<Classify> error",e);
+			throw e;
+		}
 	}
 	
 	

@@ -17,7 +17,7 @@ public class Classify {
 
 	private String name;
 
-	@OneToMany(mappedBy = "classify", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(mappedBy = "classify", orphanRemoval = true,cascade = CascadeType.MERGE)
 	private List<Task> task;
 
 	public Classify() {

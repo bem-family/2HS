@@ -4,25 +4,22 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.coyote.http11.filters.VoidInputFilter;
-import org.aspectj.weaver.ast.Var;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.bem.domain.Classify;
 import com.bem.domain.Task;
 import com.bem.domain.TaskDto;
 import com.bem.repository.ClassifyRepository;
 import com.bem.repository.TaskRepository;
 import com.bem.utils.MultipartFileMove;
 
-import antlr.debug.Event;
 
 @Component
 public class TaskService {
@@ -64,6 +61,7 @@ public class TaskService {
 		for (MultipartFile file : request.getFileMap().values()) {
 			save(file,list);
 		}
+		task.setClassify(classifyRepository.findOneById(taskDto.getClassify()));
 		task.setList_img(list);
 		taskRepository.save(task);
 	}

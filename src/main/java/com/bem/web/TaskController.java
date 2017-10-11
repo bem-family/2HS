@@ -22,7 +22,7 @@ import com.bem.service.ReviewService;
 import com.bem.service.TaskService;
 
 @Controller
-public class ReviewController extends BaseController{
+public class TaskController extends BaseController{
 	@Resource
 	private ReviewService reviewService;
 	
@@ -41,7 +41,7 @@ public class ReviewController extends BaseController{
 		return "commodity";
 	}
 	
-	@ResponseBody
+	/*@ResponseBody
 	@PostMapping("/review/remove/{id}")
 	public String delete(@PathVariable String id){
 		reviewService.delete(id);
@@ -56,7 +56,7 @@ public class ReviewController extends BaseController{
 		review.setUser_name(getCurrentUsername());
 		reviewService.add(review);
 		return "true";
-	}
+	}*/
 	
 	
 	

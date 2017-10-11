@@ -18,7 +18,7 @@ public class ReviewService {
 		return reviewRepository.findAll(id);
 	}
 	public void add(Review review){
-		reviewRepository.addReview(review);
+		reviewRepository.save(review);
 	}
 	public void delete(String id){
 		reviewRepository.deleteReview(id);

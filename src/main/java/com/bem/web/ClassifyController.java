@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.bem.domain.Classify;
 import com.bem.domain.ClassifyDto;
 import com.bem.domain.Task;
 import com.bem.repository.TaskRepository;
@@ -30,10 +31,12 @@ public class ClassifyController extends BaseController{
 	 * @param id
 	 * @return
 	 */
-	@GetMapping("/classify/{classifyId}/findDetails")
+	@GetMapping("/classify/{classifyId}")
 	public String findOneClassify(Model model ,@PathVariable String classifyId){
-		MyPage<Task> pages = taskRepository.findOneClassify(classifyId);
-		model.addAttribute("pages",pages);
+		MyPage<Task> Mypage = taskRepository.findOneClassify(classifyId);
+		List<Classify> clist = classifyService.findAllClassify();
+		model.addAttribute("clist", clist);
+		model.addAttribute("Mypage",Mypage);
 		return "index2";
 		
 	}

@@ -30,6 +30,7 @@ public class User {
 	private String email;
 	private String phone;
 	private String qq;
+	private String signature;  //个性签名
 	private Integer stu_number;	//学号
 	private String stu_major;	//专业
 	private String stu_depart;	//系部
@@ -57,6 +58,7 @@ public class User {
 	public User(){
 		
 	}
+	
 
 	public String getId() {
 		return id;
@@ -152,6 +154,14 @@ public class User {
 
 	public void setRole(ROLE role) {
 		this.role = role;
+	}
+
+	public String getSignature() {
+		return signature;
+	}
+
+	public void setSignature(String signature) {
+		this.signature = signature;
 	}
 	
 	
