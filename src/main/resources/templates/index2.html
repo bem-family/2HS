@@ -74,7 +74,7 @@
       <nav class="mdl-navigation">
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link active" th:href="@{/}"><i class="material-icons">home</i>首页</a>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/myrelease}"><i class="material-icons">shopping_cart</i>我的发布</a>
-        <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/user}"><i class="material-icons">forum</i>消息</a>
+        <!-- <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/user}"><i class="material-icons">forum</i>消息</a> -->
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/mycollect}"><i class="material-icons">star</i>我的收藏</a>
         <div class="mdl-navigation__link-line"></div>
         <a class="mdl-js-button mdl-js-ripple-effect mdl-navigation__link" th:href="@{/user}"><i class="material-icons">person</i>个人中心</a>
@@ -87,7 +87,6 @@
       <div class="page-content"><!-- Your scroll-tab-1 goes here -->
         <div class="container">
           <div class="mdl-grid">
-          
           <!-- ${Mypage.totalcount} != null ? -->
             <div  th:each="item:${Mypage.items}" class="mdl-card mdl-cell mdl-cell--3-col-desktop mdl-cell--4-col-tablet mdl-cell--2-col-phone mdl-cell--stretch mdl-shadow--2dp card-hoverable portfolio-card">
               <div class="mdl-card__media" >

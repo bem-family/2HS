@@ -167,8 +167,9 @@
     $("#dropzone").dropzone({
       url: "/upload",
       method:"post",
-      maxFiles: 10,
-      maxFilesize: 5,
+      maxFiles: 5,
+      maxFilesize: 2,
+      parallelUploads:5,
       maxThumbnailFilesize:5,
       autoProcessQueue:false,
       acceptedFiles:".jpg,.png",
@@ -193,8 +194,12 @@
         	  formData.append('address',$("#res_place").val());
         	  formData.append('qq',$("#res_way").val());
         	  formData.append('classify',$("#res_classify").val());
-          })
+          });
           
+          this.on("maxfilesreached",function(){
+        	 	alert("最多上传五张图片！");
+          
+          });
           
           
           $("#submit").on("click",function(){
