@@ -109,7 +109,7 @@ public class IndexController extends BaseController{
 	}
 	@PostMapping("/update/{id}")
 	public String update(TaskDto taskCreateForm,@PathVariable String id) {
-		taskService.update(taskCreateForm, id);
+		taskService.update(taskCreateForm, id,getCurrentUser());
 		return "index";
 	}
 	

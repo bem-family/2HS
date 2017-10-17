@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.bem.domain.Classify;
 import com.bem.domain.Task;
 import com.bem.domain.TaskDto;
+import com.bem.domain.User;
 import com.bem.repository.ClassifyRepository;
 import com.bem.repository.TaskRepository;
 import com.bem.utils.MultipartFileMove;
@@ -79,9 +80,10 @@ public class TaskService {
 	public boolean delete(String id){
 		return taskRepository.delete(id);
 	}
-	public void update(TaskDto taskCreateForm,String id){
+	public void update(TaskDto taskCreateForm,String id,User user){
 		Task task  = taskRepository.findId(id);
 		BeanUtils.copyProperties(taskCreateForm, task, Task.class);
+		task.setUser_id(user.getId());
 		taskRepository.update(task);
 	}
 }
