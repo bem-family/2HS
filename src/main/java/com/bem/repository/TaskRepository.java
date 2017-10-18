@@ -21,6 +21,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Component;
 
 import com.bem.domain.Task;
+import com.bem.domain.User;
 import com.bem.utils.MyPage;
 
 @Component
@@ -171,6 +172,23 @@ public class TaskRepository extends BaseRepository<Task> {
 		}
 		return false;
 	}
+	
+	
+	/**
+	 * 
+	 * @param id
+	 * @param user
+	 * @return
+	 */
+	public boolean delete(String id,User user){
+		Task task = findId(id);
+		if(task.getId()!=null&&task.getUser_id().equals(user.getId())){
+			getSession().delete(task);
+			return true;
+		}
+		return false;
+	}
+	
 	
 	
 	public void update(Task task){

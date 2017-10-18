@@ -172,3 +172,14 @@ if(body_length <= 768){                                           //小于768宽
 // user_chat -> right_slip  显示隐藏
 $(document).on("click", "#right_slip_btn", function(){$(".right_silp__obfuscator, .right_slip").addClass("is-visible");})
 $(document).on("click", ".right_silp__obfuscator", function(){$(".right_silp__obfuscator, .right_slip").removeClass("is-visible");})
+
+
+$(document).on("click","#user-detele",function(){
+  var list = new Array();
+  $(".list-item").find(".is-checked").each(function(i){list.push($(this).attr("for"));
+  
+  console.log(list);
+  });
+  var mlist =JSON.stringify(list);
+  $.post("/user/update/",{string:mlist});
+})

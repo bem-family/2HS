@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.alibaba.fastjson.JSON;
 import com.bem.domain.Classify;
 import com.bem.domain.Task;
 import com.bem.domain.TaskDto;
@@ -55,7 +56,7 @@ public class TaskService {
 		}
 		list.add(mFileName);
 	}
-	public void save(MultipartHttpServletRequest request,TaskDto taskDto){
+	public void save(MultipartHttpServletRequest request,TaskDto taskDto,User user){
 		Task task = new Task();
 		ArrayList<String> list = new ArrayList();
 		BeanUtils.copyProperties(taskDto,task);
@@ -63,11 +64,17 @@ public class TaskService {
 			save(file,list);
 		}
 		task.setClassify(classifyRepository.findOneById(taskDto.getClassify()));
+		task.setUser_id(user.getId());
 		task.setList_img(list);
 		taskRepository.save(task);
 	}
 	
-	
+	public void remove(String json,User user){
+		List<String> list = JSON.parseArray(json,String.class);
+		for(String item:list){
+			taskRepository.delete(item,user);
+		}
+	}
 	
 	public List<Task> findAll(){
 		return taskRepository.findAll();

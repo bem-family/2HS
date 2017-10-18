@@ -1,23 +1,20 @@
 package com.bem.domain;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.bem.utils.Time;
 
 @Entity
-public class Task {
+public class Task implements Serializable {
 	@Id
 	private String id;
 	private String title;//标题
@@ -128,5 +125,9 @@ public class Task {
 		this.classify = classify;
 	}
 
-
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return super.toString();
+	}
 }

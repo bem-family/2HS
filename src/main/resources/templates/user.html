@@ -27,13 +27,13 @@
           <input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp">
         </div>
       </div> -->
-      <button id="header-operate" class="mdl-button mdl-js-button mdl-button--icon">
+      <!-- <button id="header-operate" class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">more_vert</i>
       </button>
       <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="header-operate">
         <li class="mdl-menu__item"><a href="javascript:void(0);">操作1</a></li>
         <li class="mdl-menu__item">其他操作</li>
-      </ul>
+      </ul> -->
       <div id="header-gopactiy" class="mdl-fixed-header-bg"></div>
     </div>
     <div id="userbar-gopactiy" class="mdl-header-userbar">
@@ -54,7 +54,7 @@
       <a th:href="@{/myrelease}" class="mdl-layout__tab">我的发布</a>                                     <!-- href="#user_panel_myrelease" -->
       <a th:href="@{/mycollect}" class="mdl-layout__tab">我的收藏</a>                                     <!-- href="#user_panel_mylike" -->
       <!-- <a th:href="@{/}" class="mdl-layout__tab">消息</a>  -->                          <!-- href="#user_panel_chat" -->
-      <a th:href="@{/}" class="mdl-layout__tab">认证</a>                                         <!-- href="#user_panel_attest" -->
+      <!-- <a th:href="@{/}" class="mdl-layout__tab">认证</a>  -->                                        <!-- href="#user_panel_attest" -->
       <!-- <a th:href="@{/}" class="mdl-layout__tab">设置</a>  -->                                        <!-- href="#user_panel_setting" -->
     </div>
     <!--<div class="entrance">
@@ -159,49 +159,39 @@
       </div>
     </section>
     
-    
-   <main class="mdl-grid">
-    <div class="login-content mdl-color--white mdl-shadow--2dp content mdl-color-text--grey-800 mdl-cell mdl-cell--3-col">
-      <form action="#" method="post" th:action="@{/login}" name="login_form">
+    <div class="mdl-color--white mdl-shadow--2dp content mdl-color-text--grey-800 mdl-cell mdl-cell--3-col">
+      <form action="/user/update/" method="post">
+        <div class="form_title">修改账号</div>
         <div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" name="username" />
-          <label class="mdl-textfield__label" for="username">QQ</label>
-          <span class="error"></span>
-        </div>
-       	<div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" name="username" />
-          <label class="mdl-textfield__label" for="username">手机</label>
+          <input class="mdl-textfield__input" type="text" name="qq" />
+          <label class="mdl-textfield__label" for="account">QQ</label>
           <span class="error"></span>
         </div>
         <div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" name="username" />
-          <label class="mdl-textfield__label" for="username">邮箱</label>
+          <input class="mdl-textfield__input" type="text" name="phone" />
+          <label class="mdl-textfield__label" for="account">手机</label>
           <span class="error"></span>
         </div>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect login-btn" type="submit">登录</button>
-      </form>
-      <form th:action="@{/registration}" method="post" name="register_form">
-        <div class="form_title">Register</div>
         <div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="text" name="accountid" pattern="^\w+$"/>
-          <label class="mdl-textfield__label" for="accountid">用户名（唯一且无法修改）</label>
-          <span class="mdl-textfield__error">由数字、26个英文字母或下划线组成</span>
+          <input class="mdl-textfield__input" type="text" name="email" />
+          <label class="mdl-textfield__label" for="account">邮箱</label>
+          <span class="error"></span>
         </div>
         <div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-          <input class="mdl-textfield__input" type="email" name="email" pattern="[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?"/>
-          <label class="mdl-textfield__label" for="email">邮箱</label>
-          <span class="mdl-textfield__error">这不像是个邮箱</span>
+          <input class="mdl-textfield__input" type="text" name="name" />
+          <label class="mdl-textfield__label" for="account">用户名</label>
+          <span class="error"></span>
         </div>
-        <div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label setpw" id="setpw">
-          <i class="material-icons">remove_red_eye</i>
-          <input class="mdl-textfield__input" type="password" name="setpw"/>
-          <label class="mdl-textfield__label" for="setpw">密码</label>
-          <span class="mdl-textfield__error">密码不允许有中文字符</span>
+        <div class="full mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" name="signature" />
+          <label class="mdl-textfield__label" for="account">宣言</label>
+          <span class="error"></span>
         </div>
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect login-btn full" name="register-btn" type="button">注册</button>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect login-btn full" type="submit">修改</button>
       </form>
     </div><!--login-content end-->
-  </main>
+    
+    
     
     <section class="mdl-layout__tab-panel" id="user_panel_myrelease">
       <div class="page-content"><!-- Your user_panel_myrelease goes here --></div>

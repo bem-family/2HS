@@ -27,13 +27,13 @@
           <input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp">
         </div>
       </div> -->
-      <button id="header-operate" class="mdl-button mdl-js-button mdl-button--icon">
+      <!-- <button id="header-operate" class="mdl-button mdl-js-button mdl-button--icon">
         <i class="material-icons">more_vert</i>
       </button>
       <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="header-operate">
         <li class="mdl-menu__item"><a href="javascript:void(0);">操作1</a></li>
         <li class="mdl-menu__item">其他操作</li>
-      </ul>
+      </ul> -->
       <div id="header-gopactiy" class="mdl-fixed-header-bg"></div>
     </div>
     <div id="userbar-gopactiy" class="mdl-header-userbar">
@@ -54,7 +54,7 @@
       <a th:href="@{/myrelease}" class="mdl-layout__tab is-active">我的发布</a>                                     <!-- href="#user_panel_myrelease" -->
       <a th:href="@{/mycollect}" class="mdl-layout__tab">我的收藏</a>                                     <!-- href="#user_panel_mylike" -->
       <!-- <a th:href="@{/}" class="mdl-layout__tab">消息</a>  -->                          <!-- href="#user_panel_chat" -->
-      <a th:href="@{/}" class="mdl-layout__tab">认证</a>                                         <!-- href="#user_panel_attest" -->
+      <!-- <a th:href="@{/}" class="mdl-layout__tab">认证</a> -->                                         <!-- href="#user_panel_attest" -->
       <!-- <a th:href="@{/}" class="mdl-layout__tab">设置</a> -->                                         <!-- href="#user_panel_setting" -->
     </div>
     <!--<div class="entrance">
@@ -104,8 +104,8 @@
           <div class="mdl-grid">
             <div class="mdl-cell mdl-cell--12-col subheaders">
               <span class="pull-left">6月</span>
-              <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
-                <i class="material-icons">delete</i>
+              <button id="user-detele" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                <i class="material-icons" >delete</i>
               </button>
 <!--               <button id="goods_sorting" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                 <i class="material-icons">access_time</i>
@@ -129,6 +129,9 @@
                       <span class="secondary-info" th:text="${item.release_time}">15:27</span>
                     </span>
                   </a>
+                  <label class="user-release-checkbox mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" th:for="${item.id}">
+					  <input type="checkbox" th:id="${item.id}" class="mdl-checkbox__input" >
+				  </label>
                 </li>
 				
 				<div class="mdl-cell mdl-cell--12-col">

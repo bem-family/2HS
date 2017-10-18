@@ -1,5 +1,6 @@
 package com.bem.domain;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,7 +11,7 @@ import javax.persistence.OneToMany;
 import com.bem.utils.ID;
 
 @Entity
-public class Classify {
+public class Classify implements Serializable {
 
 	@Id
 	private String id;
